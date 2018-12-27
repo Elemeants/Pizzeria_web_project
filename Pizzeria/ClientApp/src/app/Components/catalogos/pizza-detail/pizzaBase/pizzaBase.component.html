@@ -15,13 +15,13 @@
   </div>
 </div>
 
-<div *ngIf="isCard">
+<div *ngIf="isCard" class="cards-css">
   <mat-card>
     <img *ngIf="pizzaData.image" class="cardImg rounded d-block img-fluid " mat-card-image src={{pizzaData.image}} alt="Pizza photo">
     <img *ngIf="!pizzaData.image" mat-card-image src="assets/thumbnail220x150px.png" alt="Pizza photo">
     <mat-card-content style="margin-top: 5px">
       <h4> {{pizzaData.nombre}} </h4>
-      <p> Ingredientes: <span class="text-muted" *ngFor="let ingrediente of pizzaData.ingredientes"> {{ingrediente.nombre}} </span> </p>
+      <p> Ingredientes: <span class="text-muted" *ngFor="let ingrediente of pizzaData.ingredientes"> {{ingrediente.nombre}}, </span> </p>
       <p> Costo: <strong> ${{pizzaData.costo}} Mxm </strong> </p>
     </mat-card-content>
     <mat-card-actions>
