@@ -2,11 +2,14 @@
     <div class="flex">
         <h2> Pizzas populares </h2>
         <hr>
-        <div id="grindPizzas" class="col-sm-12 col-md-12 col-lg-12">
+        <div id="grindPizzas" *ngIf="statusPizza == 1" class="col-sm-12 col-md-12 col-lg-12">
             <div *ngFor="let pizza of Pizzas" class="grindPizzas cards-css d-flex justify-content-center">
                 <app-pizzabase [pizzaData]='pizza' [isCard]='true'></app-pizzabase>
             </div>
         </div>
+        <h5 *ngIf="statusPizza == 2">
+            No hay pizzas disponibles
+        </h5>
         <hr>
         <h2> Sucursales cercanas </h2>
         <hr>

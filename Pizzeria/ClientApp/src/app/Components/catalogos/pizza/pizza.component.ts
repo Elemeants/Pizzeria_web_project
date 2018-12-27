@@ -1,11 +1,11 @@
-import { Ingrediente } from './../../../Models/Ingrediente';
-import { SucursalService } from 'src/app/Services/sucursalService/sucursal.service';
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { Pizza } from 'src/app/Models/Pizza';
 import { PizzaService } from 'src/app/Services/pizzaService/pizza.service';
 import { DialogPizzaComponent } from './dialogPizza/dialogPizza.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ImageService } from 'src/app/Services/imageService/image.service';
 
 @Component({
   selector: 'app-pizza',
@@ -14,14 +14,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class PizzaComponent implements OnInit {
   constructor(private _pizzaService: PizzaService,
+    private _imageService: ImageService,
     public dialog: MatDialog,
     private formBuilder: FormBuilder) { this.newPizza = new Pizza(); }
   private addNew: boolean;
   private formWait: boolean;
+  private statusPizza: number;
   private Pizzas: Pizza[];
   private newPizza: Pizza;
-  newPizzaForm: FormGroup;
-  selectedFile: File;
+  private newPizzaForm: FormGroup;
+  public selectedFile: File;
 
   ngOnInit() {
     this.formWait = false;
@@ -29,35 +31,77 @@ export class PizzaComponent implements OnInit {
       nombre: ['', Validators.required],
       costo: ['',  Validators.required],
     }, {});
-    this._pizzaService.GetPizzasWithIngredientes()
-      .subscribe(
-      result => this.setPizzas(result),
-      error => console.error(error)
-      );
+    this.getPizzas();
   }
   get Form() {
     return this.newPizzaForm.controls;
   }
 
+  private getPizzas() {
+    this._pizzaService.GetPizzasWithIngredientes()
+      .subscribe(
+      result => {
+        if (result) {
+          this.setPizzas(result);
+          this.statusPizza = 1;
+        } else {
+          this.statusPizza = 2;
+        }
+      },
+      error => {
+        console.error(error);
+        this.statusPizza = 0;
+      });
+  }
+
   private setPizzas(pizzas: Pizza[]) {
     this._pizzaService.updateUrlImage(pizzas);
     this.Pizzas = pizzas;
-  }
-
-  private clearFile() {
-    this.addNew = false;
-    this.selectedFile = null;
+    console.log(this.Pizzas);
   }
 
   private AddPizza() {
+    // Reading the data from the form
     this.formWait = true;
-    this.newPizza.Nombre = this.newPizzaForm.value['nombre'];
-    this.newPizza.Costo = this.newPizzaForm.value['costo'];
+    this.newPizza.nombre = this.newPizzaForm.value['nombre'];
+    this.newPizza.costo = this.newPizzaForm.value['costo'];
+    // Log's the object pizza
     console.log(this.newPizza);
+    // Process to add a pizza && upload the file
+    this._pizzaService.AddPizza(this.newPizza).subscribe(
+      result => {
+        console.log('///////////////////////');
+        console.log(result);
+        console.log('///////////////////////');
+        this.newPizza.id = result.id;
+        this._pizzaService.AddIngredientesToPizza(this.newPizza);
+        this._imageService.uploadImage('Pizzas', this.selectedFile)
+        .subscribe(x => {
+            // Reset's form data to null
+            alert('Pizza agregada');
+            this.resetForm();
+          },
+          y => {
+            console.log(y);
+            this.formWait = false;
+            alert('Error al subir la imagen');
+            this._pizzaService.DeletePizza(this.newPizza.id);
+          });
+      },
+      error => {
+        console.log(error);
+        this.formWait = false;
+        alert('Hubo un error al agregar la pizza');
+      }
+    );
+  }
+
+  private resetForm() {
     this.newPizza = null;
     this.selectedFile = null;
     this.addNew = false;
     this.formWait = false;
+    this.getPizzas();
   }
 
   onFileChanged(event) {

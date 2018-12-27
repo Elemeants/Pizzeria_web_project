@@ -1,9 +1,9 @@
 import { Ingrediente } from './Ingrediente';
 
 export class Pizza {
-    public Id: number;
-    public Nombre: string;
-    public Costo: number;
+    public id: number;
+    public nombre: string;
+    public costo: number;
     public image: string;
-    public ingredientes: Ingrediente;
+    public ingredientes: Ingrediente[];
 }

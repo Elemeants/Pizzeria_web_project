@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Pizzeria.Data;
+using Pizzeria.Helpers.Images;
 using Pizzeria.Logic.Bll.DireccionBll;
 using Pizzeria.Logic.Bll.DireccionSucursalBll;
 using Pizzeria.Logic.Bll.IngredienteBll;
@@ -15,6 +16,7 @@ using Pizzeria.Logic.Bll.PizzaBll;
 using Pizzeria.Logic.Bll.PizzasSucursalBll;
 using Pizzeria.Logic.Bll.SucursalBll;
 using Pizzeria.Logic.BllInterfaces;
+using Pizzeria.Logic.ImageHandler;
 
 namespace Pizzeria
 {
@@ -33,6 +35,11 @@ namespace Pizzeria
             services.AddDbContext<AppDBContext>(
                 Options => Options.UseSqlServer(Configuration.GetConnectionString("localDB")
                 ));
+            // Interfaces to upload images to the server in wwwroot path
+            services.AddTransient<IImageWriter, ImageWriter>();
+            services.AddTransient<IImageHandler, ImageHandler>();
+
+            // Bll interfaces for Dependecy injection in controllers
             services.AddTransient<IPizzaBll, PizzaBll>();
             services.AddTransient<ISucursalBll, SucursalBll>();
             services.AddTransient<IIngredienteBll, IngredienteBll>();
@@ -66,8 +73,8 @@ namespace Pizzeria
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseHttpsRedirection();
             app.UseSpaStaticFiles();
 
             app.UseMvc(routes =>

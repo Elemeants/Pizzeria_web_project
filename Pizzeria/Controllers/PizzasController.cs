@@ -66,7 +66,7 @@ namespace Pizzeria.Controllers
             var result = await this.pizzaBll.AddPizza(pizza);
             if (!result.Status)
                 return BadRequest(result.Message);
-            return Ok(result.Data);
+            return new CreatedAtRouteResult(new { id = pizza.Id }, pizza);
         }
         [HttpDelete("{pizzaId}")]
         public async Task<IActionResult> DeletePizza([FromRoute] int pizzaId)

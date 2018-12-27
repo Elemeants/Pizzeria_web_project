@@ -10,6 +10,7 @@ import { Title } from '@angular/platform-browser';
 export class PizzaBaseComponent implements OnInit {
   @Input() pizzaData: Pizza;
   @Input() isCard: boolean;
+  @Input() delete_enabled: boolean;
   constructor() {
     this.pizzaData = new Pizza();
    }

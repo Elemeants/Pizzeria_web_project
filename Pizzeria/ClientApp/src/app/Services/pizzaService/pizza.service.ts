@@ -4,6 +4,7 @@ import { endpoints } from '../endpoints';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Sucursal } from 'src/app/Models/Sucursal';
+import { Ingrediente } from 'src/app/Models/Ingrediente';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,15 @@ export class PizzaService {
     }
     return pizzas;
   }
+  public AddIngredientesToPizza(pizza: Pizza) {
+    console.log('+++++++++++++++++++++++');
+    console.log(pizza);
+    console.log('+++++++++++++++++++++++');
+    const urlIngrediente = this.baseUrl + pizza.id + '/';
+    pizza.ingredientes.forEach(element => {
+      this._http.post(urlIngrediente + element.id, '', this.httpOptions).pipe();
+    });
+  }
   public GetSucursalesFromPizza(pizzaId: number): Observable<Sucursal[]> {
     return this._http.get<Sucursal[]>(this.baseUrl + pizzaId + '/Sucursales').pipe();
   }
@@ -36,8 +46,8 @@ export class PizzaService {
     return this._http.get<Pizza>(this.baseUrl + pizzaId).pipe();
   }
 
-  public AddPizza(pizza: Pizza) {
-    return this._http.post(this.baseUrl, pizza, this.httpOptions).pipe();
+  public AddPizza(pizza: Pizza): Observable<Pizza> {
+    return this._http.post<Pizza>(this.baseUrl, pizza, this.httpOptions).pipe();
   }
 
   public DeletePizza(pizzaId: number) {

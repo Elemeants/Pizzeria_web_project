@@ -84,7 +84,7 @@ namespace Pizzeria.Logic.Bll.PizzaBll
                 this.OperationResult.Data = pizzas;
                 this.SetResponseOK();
                 if (pizzas.Count == 0)
-                    this.SetResponseFail("No hay pizzas");
+                    this.OperationResult.Data = null;
                 return this.OperationResult;
             }
             catch (Exception e)
@@ -108,7 +108,7 @@ namespace Pizzeria.Logic.Bll.PizzaBll
                 this.OperationResult.Data = pizzas;
                 this.SetResponseOK();
                 if (pizzas.Count == 0)
-                    this.SetResponseFail("No hay pizzas");
+                    this.OperationResult.Data = null;
                 return this.OperationResult;
             }
             catch (Exception)
