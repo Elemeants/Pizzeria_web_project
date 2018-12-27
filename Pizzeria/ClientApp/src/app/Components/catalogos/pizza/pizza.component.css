@@ -1,0 +1,49 @@
+#mainComponent{
+    text-align:justify; 
+    margin-top: 15px;
+    margin-left: 5%; 
+    margin-right: 5%;
+}
+
+#headerText {
+    display: flex; 
+    flex-flow: row wrap;
+    align-items: flex-start;
+}
+
+.cardImg{
+    width: 250px !important;
+    height: 150px;
+    margin: 0px;
+}
+
+#FormPizza{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 100% !important;
+    height: 100%;
+    margin: 0px;
+}
+
+.imageInput {
+    width: 100%;
+    height: auto;
+}
+
+#ActionButton{
+    display: flex;
+    flex-flow: row;
+}
+
+.cards-css{
+    width: 250px !important;
+    height: 333px;
+    margin: 15px;
+}
+
+#grindPizzas{
+    display: flex; 
+    flex-flow: row wrap;
+    align-items: flex-start;
+}

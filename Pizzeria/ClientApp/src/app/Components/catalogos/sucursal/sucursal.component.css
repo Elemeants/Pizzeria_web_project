@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik+Mono+One');
+#mainComponent{
+    text-align:justify; 
+    margin-top: 15px;
+    margin-left: 5%; 
+    margin-right: 5%;
+}
+
+
+.container {
+    min-height: 500px;
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+
+.bgImage{
+    filter: brightness(0.5);
+    width:100%;
+}
+.centered {
+    font-family: 'Rubik Mono One', sans-serif;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+#containerData h4{
+    font-size: 80px;
+    font-weight: 700;
+}
+
+#containerData p{
+    white-space: nowrap;
+    font-size: 50px;
+    font-weight: 300;
+}
+
+#containerData p strong{
+    font-size: 50px;
+    font-weight: 500;
+    color: rgb(250, 20, 20);
+}
+
+.cardImg{
+    width: 250px !important;
+    height: 150px;
+    margin: 0px;
+}
+
+.cards-css{
+    width: 250px !important;
+    height: 350px;
+    margin: 15px;
+}
+
+#grindPizzas{
+    display: flex; 
+    flex-flow: row wrap;
+    align-items: flex-start;
+}

@@ -1,0 +1,8 @@
+<h3 mat-dialog-title>Ingredientes</h3>
+<div mat-dialog-content *ngIf="dialogSelection" class="indexSelection">
+  <mat-checkbox *ngFor="let select of dialogSelection; let i = index" [(ngModel)]="status[i]"> {{select.nombre}} </mat-checkbox>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()"> Cancel </button>
+  <button mat-button [mat-dialog-close]="getData()" cdkFocusInitial>Ok</button>
+</div>

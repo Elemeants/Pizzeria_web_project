@@ -1,0 +1,29 @@
+<div id="mainComponent">
+    <div class="flex">
+        <h2> Pizzas populares </h2>
+        <hr>
+        <div id="grindPizzas" class="col-sm-12 col-md-12 col-lg-12">
+            <div *ngFor="let pizza of Pizzas" class="grindPizzas cards-css d-flex justify-content-center">
+                <app-pizzabase [pizzaData]='pizza' [isCard]='true'></app-pizzabase>
+            </div>
+        </div>
+        <hr>
+        <h2> Sucursales cercanas </h2>
+        <hr>
+        <div id="grindSucursales" class="col-sm-12 col-md-12 col-lg-12">
+            <div  *ngFor="let sucursal of Sucursales" class="cards-css d-flex justify-content-center">
+                <mat-card>
+                    <img mat-card-image src="assets/thumbnail220x150px.png" alt="Sucursales photo">
+                    <mat-card-content>
+                        <h4>{{sucursal.nombre}}</h4>
+                        <p> {{sucursal.direccion.direccion}}, {{sucursal.direccion.colonia}} </p>
+                        <p> Tel: {{sucursal.telefono}} </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-button [routerLink]="['/Sucursal', sucursal.nombre]">SEE MORE</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

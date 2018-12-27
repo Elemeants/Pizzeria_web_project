@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css?family=IM+Fell+English:400i');
+@import url('https://fonts.googleapis.com/css?family=Charm|Courgette');
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+#FormInputRed .mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: green;
+}
+
+#FormInputRed .mat-form-field.mat-focused .mat-form-field-label {
+    color: green;
+}

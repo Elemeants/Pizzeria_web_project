@@ -1,0 +1,25 @@
+<div *ngIf="sucursal" id="mainComponent">
+  <h2> Sucursal {{sucursal.nombre}}</h2>
+  <hr>
+  <p> <strong> Direccion: </strong> {{sucursal.direccion.direccion}}, {{sucursal.direccion.colonia}} </p>
+  <p> <strong> Tel: </strong> {{sucursal.telefono}} </p>
+  <hr>
+  <div>
+    <h2> Pizzas disponibles en la sucursal</h2>
+    <hr>
+    <div *ngIf="sucursal.pizzas" id="grindPizzas" class="col-sm-12 col-md-12 col-lg-12">
+      <div *ngFor="let pizza of sucursal.pizzas" class="cards-css d-flex justify-content-center">
+        <app-pizzabase [pizzaData]='pizza' [isCard]='true'></app-pizzabase>
+      </div>
+    </div>
+    <div *ngIf="!sucursal.pizzas">
+      <h4>
+        No hay pizzas disponibles en la sucursal
+      </h4>
+    </div>
+  </div>
+</div>
+<div *ngIf="!sucursal">
+  <h1 class="display-4" style="min-height: 720px"> Cargando... </h1>
+  <app-loading></app-loading>
+</div>

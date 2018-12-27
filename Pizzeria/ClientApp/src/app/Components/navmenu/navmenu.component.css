@@ -1,0 +1,120 @@
+
+#HeaderBlock{
+    background-color: #005ccc;
+    height: 60px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+mat-sidenav-content{
+    height: auto !important;
+    overflow: hidden;
+}
+
+.mat-success{
+    background-color: #005ccc;
+    color: #fff;
+}
+
+#botonesMenuTop button{
+    height: auto;
+}
+
+#botonesMenuTop button h5{
+    margin-top: 8.5px;
+    margin-bottom: 8.5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+}
+
+#botonesMenuTop{
+    margin-top: 13px;
+    margin-bottom: 14px;
+    display: inline-block;
+}
+
+mat-sidenav-container{
+    height: 100%;
+    width: 100%;
+    background-color: #eeeeee;
+}
+
+#sidebarNav{
+    position: inherit;
+    height: 100%;
+    display: inherit;
+    transform: inherit; 
+    flex: 1 0 auto;
+    width: 100%;
+}
+
+#sidebar{
+    margin-left: 10px;
+    margin-top: 6px;
+    display: inline-block;
+    align-content: flex-end;
+    width: 50px;
+    height: 50px;
+}
+
+#sidebar img{
+    cursor: pointer;
+    margin: 0px, 0px, 0px, 0px;
+    margin-bottom: 5px;
+    width: 30px;
+    height: 30px;
+    vertical-align:middle;
+}
+
+#logoHeader{
+    width: auto;
+    cursor: pointer;
+    display: flex;
+}
+
+#logoHeader img{
+    width: auto;
+    height: 60px;
+}
+
+#logoHeader h1{
+    margin-top: 15px;
+    font-family: 'Charm',cursive; 
+    font-size: 25px;
+    color:whitesmoke;
+}
+
+.menuButtons{
+    float: left;
+    list-style: none;
+}
+
+.material-small-button {
+    height: 30px;
+}
+
+.material-small-button p{
+    font-size: 15px;
+    vertical-align: middle;
+    margin-top: -7px;
+    margin-bottom: 7px;
+}
+
+@media (max-width: 640px) {
+    #logoHeader{
+        width: auto;
+        cursor: pointer;
+        display: flex;
+    }
+    
+    #logoHeader img{
+        margin-top: 8px;
+        width: auto;
+        height: 44px;
+    }
+    
+    #logoHeader h1{
+        margin-top: 19px;
+        font-size: 20px;
+    }
+}
