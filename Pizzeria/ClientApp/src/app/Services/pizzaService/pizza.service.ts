@@ -11,6 +11,7 @@ import { Ingrediente } from 'src/app/Models/Ingrediente';
 })
 export class PizzaService {
   private baseUrl = endpoints.urlApi + 'Pizzas/';
+  private selectPizza: boolean;
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -32,7 +33,7 @@ export class PizzaService {
     pizza.ingredientes.forEach(element => {
       this._http.post(urlIngrediente + element.id, '').pipe().subscribe(
         result => {
-          console.log('@Inserting ingredient to pizza (' + urlIngrediente + element.id + ')');
+          // console.log('@Inserting ingredient to pizza (' + urlIngrediente + element.id + ')');
         });
     });
   }

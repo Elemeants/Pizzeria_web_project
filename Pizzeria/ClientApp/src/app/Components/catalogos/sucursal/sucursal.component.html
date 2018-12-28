@@ -7,20 +7,30 @@
   <div>
     <h2> Pizzas disponibles en la sucursal</h2>
     <hr>
-    <div *ngIf="sucursal.pizzas" id="grindPizzas" class="col-sm-12 col-md-12 col-lg-12">
-      <div *ngFor="let pizza of sucursal.pizzas" class="cards-css d-flex justify-content-center">
-        <app-pizzabase [pizzaData]='pizza' [isCard]='true'></app-pizzabase>
+    <div id="grindPizzas" class="col-sm-12 col-md-12 col-lg-12">
+      <div  *ngFor="let pizza of sucursal.pizzas">
+        <app-pizzabase *ngIf="sucursal.pizzas" [pizzaData]='pizza' [isCard]='true' 
+        [delete_enabled]='true' (pizzaDeleted)='deletePizzaFromSucursal(pizza)'
+        class="cards-css d-flex justify-content-center"></app-pizzabase>
       </div>
+       <!-- Mat-card to add new pizzas to sucursal -->
+      <mat-card class="cards-css d-flex justify-content-center">
+        <button mat-button style="width: 100%; height: 100%" (click)="selectPizza = true; getPizzas();" *ngIf="!selectPizza"> ADD NEW </button>
+        <button mat-button style="width: 100%; height: 100%" (click)="selectPizza = false" *ngIf="selectPizza"> CANCEL </button>
+      </mat-card>
     </div>
-    <div *ngIf="!sucursal.pizzas">
-      <h4>
-        No hay pizzas disponibles en la sucursal
-      </h4>
-    </div>
-    <!-- Mat-card to add new pizzas to sucursal -->
-    <mat-card class="cards-css d-flex justify-content-center">
-      <button mat-button style="width: 100%; height: 100%"> ADD NEW </button>
-    </mat-card>
+    <mat-expansion-panel *ngIf="selectPizza" [expanded]="PizzasNotSucursal.length > 0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Pizzas disponibles
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div id="grindPizzas">
+        <div *ngFor="let pizza of PizzasNotSucursal" class="cards-css d-flex justify-content-center">
+          <app-pizzacardselector [pizzaData]='pizza' (AddPizza)='AddPizzatoSucursal(pizza)'></app-pizzacardselector>
+        </div>
+      </div>
+    </mat-expansion-panel>
   </div>
 </div>
 <div *ngIf="!sucursal">

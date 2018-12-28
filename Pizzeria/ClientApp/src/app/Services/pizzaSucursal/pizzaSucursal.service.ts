@@ -1,4 +1,4 @@
-import { Sucursal } from './../../Models/Sucursal';
+import { Sucursal } from 'src/app/Models/Sucursal';
 import { Pizza } from './../../Models/Pizza';
 import { Injectable } from '@angular/core';
 import { endpoints } from '../endpoints';
@@ -11,25 +11,22 @@ import { Direccion } from 'src/app/Models/Direccion';
 })
 export class PizzaSucursalService {
   private baseUrl = endpoints.urlApi + 'Sucursales/';
-  constructor(private _http: HttpClient, sucursal: Sucursal) {
-    this.baseUrl += sucursal.id + '/';
-  }
+  constructor(private _http: HttpClient) { }
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
     })
   };
 
-  public AddPizzaToSucursal(pizzaId: number) {
-    return this._http.post(this.baseUrl + pizzaId, '', this.httpOptions);
+  public deletePizzaFromSucursal(pizza: Pizza, sucursal: Sucursal) {
+    return this._http.delete(this.baseUrl + sucursal.id + '/' + pizza.id).pipe();
   }
 
-  public GetPizzasFromSucursal(): Observable<Pizza[]> {
-    return this._http.get<Pizza[]>(this.baseUrl + 'Pizzas');
+  public AddPizzaToSucursal(pizza: Pizza, sucursal: Sucursal) {
+    return this._http.post(this.baseUrl + sucursal.id + '/' + pizza.id, '').pipe();
   }
 
-  public SetDireccionSucursal(direccion: Direccion) {
-    return this._http.put(this.baseUrl + 'Direccion/' + direccion.id,
-    '', this.httpOptions).pipe();
+  public GetPizzasFromSucursal(sucursal: Sucursal): Observable<Pizza[]> {
+    return this._http.get<Pizza[]>(this.baseUrl + sucursal.id + '/' + 'Pizzas').pipe();
   }
 }

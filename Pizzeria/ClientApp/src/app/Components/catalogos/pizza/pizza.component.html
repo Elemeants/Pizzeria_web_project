@@ -3,8 +3,8 @@
   <hr>
   <div id="grindPizzas" class="col-sm-12 col-md-12 col-lg-12">
     <div *ngFor="let pizza of Pizzas; trackBy: trackItem" class="cards-css d-flex justify-content-center">
-        <app-pizzabase [pizzaData]='pizza' [isCard]='true' [delete_enabled]='true' 
-        *ngIf="Pizzas && statusPizza == 1" (pizzaDeleted)='getPizzas()'></app-pizzabase>
+        <app-pizzabase [pizzaData]='pizza' [isCard]='true' [delete_enabled]='true' (pizzaDeleted)='getPizzas()'
+        *ngIf="Pizzas && statusPizza == 1"></app-pizzabase>
     </div>
     <!-- Formulario dentro de una card -->
     <mat-card class="cards-css d-flex justify-content-center">
@@ -44,5 +44,4 @@
     </mat-card>
   </div>
   <app-loading *ngIf="!Pizzas && statusPizza == 0"></app-loading>
-  
 </div>

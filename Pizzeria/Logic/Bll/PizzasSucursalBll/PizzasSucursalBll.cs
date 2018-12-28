@@ -44,13 +44,13 @@ namespace Pizzeria.Logic.Bll.PizzasSucursalBll
         {
             try
             {
-                var entry = new PizzasSucursal() { SucursalId = sucursalId, PizzaId = pizzaId };
+                var entry = this.dBcontext.PizzasSucursals.Where(x => x.SucursalId == sucursalId && x.PizzaId == pizzaId).FirstOrDefault();
                 this.dBcontext.PizzasSucursals.Remove(entry);
                 await this.dBcontext.SaveChangesAsync();
                 this.SetResponseOK();
                 return this.OperationResult;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 this.SetResponseFail("No se pudo eliminar la pizza de la sucursal");
                 return this.OperationResult;

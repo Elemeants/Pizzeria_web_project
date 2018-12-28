@@ -37,6 +37,28 @@ export class PizzaComponent implements OnInit {
     return this.newPizzaForm.controls;
   }
 
+  private DeletePizza(pizza: Pizza) {
+    this._pizzaService.DeletePizza(pizza.id).subscribe(
+      result => {
+        this._imageService.deleteImage('Pizzas',
+        pizza.image.split('/Pizzas/')[1])
+        .subscribe(
+          resultdeleted => {
+            alert('Se ha eliminado esa pizza!');
+            pizza = new Pizza();
+          },
+          errordeleted => {
+            console.error(errordeleted);
+          }
+        );
+      },
+      error => {
+        console.error(error);
+        alert('Upss hubo un fallo al eliminar la pizza');
+      }
+    );
+  }
+
   private getPizzas() {
     this._pizzaService.GetPizzasWithIngredientes()
       .subscribe(
@@ -51,8 +73,7 @@ export class PizzaComponent implements OnInit {
       error => {
         console.error(error);
         this.statusPizza = 0;
-      }
-      );
+      });
   }
 
   private setPizzas(pizzas: Pizza[]) {

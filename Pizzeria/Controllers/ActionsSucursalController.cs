@@ -27,12 +27,18 @@ namespace Pizzeria.Controllers
         [HttpPost("{pizzaId}")]
         public async Task<IActionResult> AddPizzaToSucursal([FromRoute] int pizzaId, [FromRoute] int sucursalId)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
             var result = await this.pizzasSucursalBll.AddPizzaToSucursal(sucursalId, pizzaId);
             if (!result.Status)
                 return BadRequest(result.Message);
             return Ok("Pizza agregada a la sucursal");
+        }
+        [HttpDelete("{pizzaId}")]
+        public async Task<IActionResult> DeletePizzaFromSucursal([FromRoute] int pizzaId, [FromRoute] int sucursalId)
+        {
+            var result = await this.pizzasSucursalBll.DeletePizzaFromSucursal(sucursalId, pizzaId);
+            if (!result.Status)
+                return BadRequest(result.Message);
+            return Ok("Pizza eliminada de la sucursal");
         }
         [HttpGet("Pizzas")]
         public ActionResult<IEnumerable<Pizza>> GetPizzasInSucursal([FromRoute] int sucursalId)
@@ -42,7 +48,6 @@ namespace Pizzeria.Controllers
                 return BadRequest(result.Message);
             return Ok(result.Data);
         }
-
         [HttpPut("Direccion/{direccionId}")]
         public async Task<IActionResult> SetDireccionSucursal([FromRoute] int sucursalId, [FromRoute] int direccionId)
         {
@@ -51,7 +56,6 @@ namespace Pizzeria.Controllers
                 return BadRequest(result.Message);
             return Ok(result.Data);
         }
-
         [HttpDelete("Direccion")]
         public async Task<IActionResult> DelDireccionSucursal([FromRoute] int sucursalId, [FromRoute] int direccionId)
         {

@@ -25,6 +25,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 // Components
 import { AppRoutingModule } from './app-routing.module';
@@ -39,6 +40,7 @@ import { PizzaDetailComponent } from './Components/catalogos/pizza-detail/pizza-
 import { LoadingComponent } from './Components/loading/loading.component';
 import { PizzaBaseComponent } from './Components/catalogos/pizza-detail/pizzaBase/pizzaBase.component';
 import { PizzaDeleteDialogComponent } from './Components/catalogos/pizza-detail/pizzaBase/pizzaDeleteDialog/pizzaDeleteDialog.component';
+import { PizzaCardSelectorComponent } from './Components/catalogos/sucursal/pizzaCardSelector/pizzaCardSelector.component';
 
 @NgModule({
   declarations: [
@@ -53,9 +55,11 @@ import { PizzaDeleteDialogComponent } from './Components/catalogos/pizza-detail/
     LoadingComponent,
     PizzaBaseComponent,
     DialogPizzaComponent,
-    PizzaDeleteDialogComponent
+    PizzaDeleteDialogComponent,
+    PizzaCardSelectorComponent
   ],
   imports: [
+    MatExpansionModule,
     MatCheckboxModule,
     MatDialogModule,
     MatSelectModule,
