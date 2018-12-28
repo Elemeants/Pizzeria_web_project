@@ -23,7 +23,6 @@ export class DialogPizzaComponent {
           if (inputData['select']) {
             this.buildCheckPoints(inputData['select']);
           }
-          // console.log(this.dialogSelection);
         },
         error => console.error(error)
       );

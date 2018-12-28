@@ -26,7 +26,7 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-button [routerLink]="['/Pizzas', pizzaData.id]">SEE MORE</button>
-      <button mat-button [routerLink]="['/Pizzas', pizzaData.id, 'delete']" 
+      <button mat-button (click)='openDialogDelete()'
       *ngIf="delete_enabled">DELETE</button>
     </mat-card-actions>
   </mat-card>

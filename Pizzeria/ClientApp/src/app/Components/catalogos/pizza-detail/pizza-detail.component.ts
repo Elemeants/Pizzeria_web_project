@@ -45,7 +45,6 @@ export class PizzaDetailComponent implements OnInit {
     this._pizzaService.GetSucursalesFromPizza(pizzaId).subscribe(
       result => {
         this.sucursales = result;
-        console.table(this.sucursales);
       },
       error => console.error(error)
     );

@@ -20,11 +20,17 @@ namespace Pizzeria.Controllers
         {
             this.imageHandler = imageHandler;
         }
-        // POST: api/Image
+
         [HttpPost("{pathFile}")]
         public async Task<IActionResult> Uploadimage(IFormFile file, [FromRoute] string pathFile)
         {
             return await this.imageHandler.UploadImage(file, pathFile);
+        }
+
+        [HttpDelete("{pathFile}/{Filename}")]
+        public IActionResult Uploadimage([FromRoute] string pathFile, [FromRoute] string Filename)
+        {
+            return this.imageHandler.DeleteImage(Filename, pathFile);
         }
     }
 }

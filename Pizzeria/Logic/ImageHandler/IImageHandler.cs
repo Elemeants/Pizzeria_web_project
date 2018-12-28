@@ -11,5 +11,7 @@ namespace Pizzeria.Logic.ImageHandler
     {
         Task<IActionResult> UploadImage(IFormFile file);
         Task<IActionResult> UploadImage(IFormFile file, string path);
+        IActionResult DeleteImage(string Filename, string path);
+        IActionResult DeleteImage(string Filename);
     }
 }

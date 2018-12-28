@@ -35,7 +35,6 @@ namespace Pizzeria.Helpers.Images
             string fileName;
             try
             {
-                var extension = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];
                 fileName = file.FileName;
                 var pathroot = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Image", path, fileName);
 
@@ -50,6 +49,20 @@ namespace Pizzeria.Helpers.Images
             }
 
             return true;
+        }
+
+        public bool DeleteImage(string Filename, string path)
+        {
+            try
+            {
+                var pathroot = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Image", path, Filename);
+                File.Delete(pathroot);
+                return !File.Exists(pathroot);
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
     }
 }

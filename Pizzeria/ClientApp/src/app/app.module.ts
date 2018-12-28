@@ -38,6 +38,7 @@ import { PizzaComponent } from './Components/catalogos/pizza/pizza.component';
 import { PizzaDetailComponent } from './Components/catalogos/pizza-detail/pizza-detail.component';
 import { LoadingComponent } from './Components/loading/loading.component';
 import { PizzaBaseComponent } from './Components/catalogos/pizza-detail/pizzaBase/pizzaBase.component';
+import { PizzaDeleteDialogComponent } from './Components/catalogos/pizza-detail/pizzaBase/pizzaDeleteDialog/pizzaDeleteDialog.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { PizzaBaseComponent } from './Components/catalogos/pizza-detail/pizzaBas
     PizzaDetailComponent,
     LoadingComponent,
     PizzaBaseComponent,
-    DialogPizzaComponent
+    DialogPizzaComponent,
+    PizzaDeleteDialogComponent
   ],
   imports: [
     MatCheckboxModule,
@@ -79,6 +81,6 @@ import { PizzaBaseComponent } from './Components/catalogos/pizza-detail/pizzaBas
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [DialogPizzaComponent]
+  entryComponents: [DialogPizzaComponent, PizzaDeleteDialogComponent]
 })
 export class AppModule { }

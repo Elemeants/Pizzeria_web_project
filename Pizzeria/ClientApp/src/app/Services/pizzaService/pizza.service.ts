@@ -26,15 +26,17 @@ export class PizzaService {
     }
     return pizzas;
   }
+
   public AddIngredientesToPizza(pizza: Pizza) {
-    console.log('+++++++++++++++++++++++');
-    console.log(pizza);
-    console.log('+++++++++++++++++++++++');
     const urlIngrediente = this.baseUrl + pizza.id + '/';
     pizza.ingredientes.forEach(element => {
-      this._http.post(urlIngrediente + element.id, '', this.httpOptions).pipe();
+      this._http.post(urlIngrediente + element.id, '').pipe().subscribe(
+        result => {
+          console.log('@Inserting ingredient to pizza (' + urlIngrediente + element.id + ')');
+        });
     });
   }
+
   public GetSucursalesFromPizza(pizzaId: number): Observable<Sucursal[]> {
     return this._http.get<Sucursal[]>(this.baseUrl + pizzaId + '/Sucursales').pipe();
   }

@@ -16,9 +16,20 @@ namespace Pizzeria.Logic.ImageHandler
             _imageWriter = imageWriter;
         }
 
+        public IActionResult DeleteImage(string Filename)
+        {
+            return this.DeleteImage(Filename, "");
+        }
+
         public async Task<IActionResult> UploadImage(IFormFile file)
         {
             return await this.UploadImage(file, "");
+        }
+
+        public IActionResult DeleteImage(string Filename, string path)
+        {
+            var result = this._imageWriter.DeleteImage(Filename, path);
+            return new StatusCodeResult(result ? 200 : 400);
         }
 
         public async Task<IActionResult> UploadImage(IFormFile file, string path)

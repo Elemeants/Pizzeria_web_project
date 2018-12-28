@@ -44,6 +44,7 @@ namespace Pizzeria.Logic.Bll.PizzaBll
                 var pizza = this.dBContext.Pizzas.Where(x => x.Id == pizzaId).FirstOrDefault();
                 this.dBContext.Pizzas.Remove(pizza);
                 await this.dBContext.SaveChangesAsync();
+
                 this.SetResponseOK();
                 return this.OperationResult;
             }

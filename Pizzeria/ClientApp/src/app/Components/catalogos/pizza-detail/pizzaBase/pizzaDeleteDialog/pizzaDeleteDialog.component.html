@@ -1,0 +1,5 @@
+<h3 mat-dialog-title style="text-align: center;">Eliminar {{pizzaData.nombre}} </h3>
+<div mat-dialog-actions style="display: flex; flex-direction: row;">
+  <button mat-button (click)="onNoClick()" style="justify-self: flex-start"> Cancel </button>
+  <button mat-button [mat-dialog-close]="getResponse()" cdkFocusInitial style="justify-self: flex-end">Ok</button>
+</div>

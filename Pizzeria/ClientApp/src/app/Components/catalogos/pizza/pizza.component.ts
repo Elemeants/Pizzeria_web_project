@@ -51,13 +51,13 @@ export class PizzaComponent implements OnInit {
       error => {
         console.error(error);
         this.statusPizza = 0;
-      });
+      }
+      );
   }
 
   private setPizzas(pizzas: Pizza[]) {
     this._pizzaService.updateUrlImage(pizzas);
     this.Pizzas = pizzas;
-    console.log(this.Pizzas);
   }
 
   private AddPizza() {
@@ -66,13 +66,10 @@ export class PizzaComponent implements OnInit {
     this.newPizza.nombre = this.newPizzaForm.value['nombre'];
     this.newPizza.costo = this.newPizzaForm.value['costo'];
     // Log's the object pizza
-    console.log(this.newPizza);
+    // console.log(this.newPizza);
     // Process to add a pizza && upload the file
     this._pizzaService.AddPizza(this.newPizza).subscribe(
       result => {
-        console.log('///////////////////////');
-        console.log(result);
-        console.log('///////////////////////');
         this.newPizza.id = result.id;
         this._pizzaService.AddIngredientesToPizza(this.newPizza);
         this._imageService.uploadImage('Pizzas', this.selectedFile)
@@ -82,22 +79,26 @@ export class PizzaComponent implements OnInit {
             this.resetForm();
           },
           y => {
-            console.log(y);
             this.formWait = false;
             alert('Error al subir la imagen');
             this._pizzaService.DeletePizza(this.newPizza.id);
           });
       },
       error => {
-        console.log(error);
+        console.error(error);
         this.formWait = false;
         alert('Hubo un error al agregar la pizza');
       }
     );
   }
 
+  public trackItem(index: number, item: Pizza) {
+    return item.id;
+  }
+
   private resetForm() {
-    this.newPizza = null;
+    this.newPizzaForm.reset();
+    this.newPizza = new Pizza();
     this.selectedFile = null;
     this.addNew = false;
     this.formWait = false;

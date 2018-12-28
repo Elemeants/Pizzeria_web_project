@@ -9,5 +9,6 @@ namespace Pizzeria.Helpers.Images
     public interface IImageWriter
     {
         Task<bool> UploadImage(IFormFile file, string path);
+        bool DeleteImage(string Filename, string path);
     }
 }

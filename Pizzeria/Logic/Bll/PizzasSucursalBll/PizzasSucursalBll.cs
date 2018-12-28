@@ -88,7 +88,7 @@ namespace Pizzeria.Logic.Bll.PizzasSucursalBll
                 this.OperationResult.Data = sucursals;
                 this.SetResponseOK();
                 if (sucursals.Count() == 0)
-                    this.SetResponseFail("No hay sucursales");
+                    this.OperationResult.Data = null;
                 return this.OperationResult;
             }
             catch (Exception)
@@ -109,7 +109,7 @@ namespace Pizzeria.Logic.Bll.PizzasSucursalBll
                 this.OperationResult.Data = pizzasSucursal;
                 this.SetResponseOK();
                 if (pizzasSucursal.Count() == 0)
-                    this.SetResponseFail("No hay pizzas");
+                    this.OperationResult.Data = null;
                 return this.OperationResult;
             }
             catch (Exception)
