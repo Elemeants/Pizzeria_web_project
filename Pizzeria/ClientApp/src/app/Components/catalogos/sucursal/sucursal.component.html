@@ -11,8 +11,8 @@
   <div>
     <h2> Pizzas disponibles en la sucursal</h2>
     <hr>
-    <div class="col-sm-12 col-md-12 col-lg-12 flexContainerRow">
-      <div  *ngFor="let pizza of sucursal.pizzas">
+    <div class="col-sm-12 col-md-12 col-lg-12 flexContainer">
+      <div *ngFor="let pizza of sucursal.pizzas">
         <app-pizzabase *ngIf="sucursal.pizzas" [pizzaData]='pizza' [isCard]='true' 
         [delete_enabled]='true' (pizzaDeleted)='deletePizzaFromSucursal(pizza)'
         class="cards-css d-flex justify-content-center"></app-pizzabase>
@@ -29,7 +29,7 @@
           Pizzas disponibles
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <div id="grindPizzas">
+      <div class="flexContainer">
         <div *ngFor="let pizza of PizzasNotSucursal" class="cards-css d-flex justify-content-center">
           <app-pizzacardselector [pizzaData]='pizza' (AddPizza)='AddPizzatoSucursal(pizza)'></app-pizzacardselector>
         </div>
