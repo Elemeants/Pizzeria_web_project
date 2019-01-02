@@ -45,6 +45,7 @@ export class PizzaComponent implements OnInit {
         .subscribe(
           resultdeleted => {
             alert('Se ha eliminado esa pizza!');
+            this.getPizzas();
             pizza = new Pizza();
           },
           errordeleted => {

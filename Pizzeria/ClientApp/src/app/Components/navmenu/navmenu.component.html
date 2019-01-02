@@ -11,7 +11,7 @@
         <button mat-menu-item *ngFor="let sucursal of Sucursales" [routerLink]="['/Sucursal', sucursal]" class="material-small-button"> 
           <p> {{sucursal}} </p> 
         </button>
-        <button mat-menu-item class="material-small-button" *ngIf="Sucursales" [routerLink]="['/Sucursal', 'Agregar']"> <p> Agregar</p> </button>
+        <button mat-menu-item class="material-small-button" *ngIf="Sucursales" (click)="openDialogSucursal()"> <p> Agregar</p> </button>
         <button mat-menu-item class="material-small-button" *ngIf="!Sucursales"> <p> Cargando... </p> </button>
       </mat-menu>
       <button mat-button [color]="'success'" [matMenuTriggerFor]="sucurMenu"><h5>Sucursales</h5> </button>
@@ -29,7 +29,7 @@
             {{sucursal}}
           </p>
         </button>
-        <button mat-menu-item class="material-small-button" *ngIf="Sucursales" [routerLink]="['/Sucursal', 'Agregar']"> <p> Agregar</p> </button>
+        <button mat-menu-item class="material-small-button" *ngIf="Sucursales" (click)="openDialogSucursal()"> <p> Agregar</p> </button>
         <button mat-menu-item class="material-small-button" *ngIf="!Sucursales"> <p> Cargando... </p> </button>
       </mat-menu>
       <a mat-list-item [matMenuTriggerFor]="sucursalMenu">Sucursales </a>

@@ -1,0 +1,34 @@
+<mat-card class="cards-css d-flex justify-content-center">
+  <form id="FormPizza" [formGroup]="newPizzaForm">
+    <h5 style="text-align: center"> {{actionResult | titlecase}} pizza </h5>
+    <mat-form-field >
+        <input matInput type="text" placeholder="Nombre" formControlName="nombre">
+        <mat-error *ngIf="Form.costo.errors?.required">
+            Nombre is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Costo" type="number" formControlName="costo">
+        <span matPrefix>$&nbsp;</span>
+        <mat-error *ngIf="Form.costo.errors?.required">
+            Costo is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="Form.costo.value <= 0 && !Form.costo.errors?.required">
+            Costo must be more that 0
+        </mat-error>
+    </mat-form-field>
+    <button mat-button style="width: 100%; height: auto;" (click)="openDialog()">INGREDIENTES</button>
+    <div>
+        <input  style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
+        <button mat-button style="width: 100%; height: auto; "(click)="fileInput.click()"> 
+            <span *ngIf="selectedFile"> UPLOADED </span> 
+            <span *ngIf="!selectedFile"> SELECT IMAGE </span> 
+        </button>
+    </div>
+    <div id="ActionButton">
+        <button mat-button style="width: 50%; height: auto;" (click)="Submit()" 
+        [disabled]="formWait || newPizzaForm.invalid"> {{actionResult}} </button>
+        <button mat-button style="width: 50%; height: auto;" (click)="resetForm()">CANCEL</button>
+    </div>
+  </form>
+</mat-card>

@@ -16,18 +16,22 @@
 </div>
 
 <div *ngIf="isCard" class="cards-css">
-  <mat-card>
-    <img *ngIf="pizzaData.image" class="cardImg rounded d-block img-fluid " mat-card-image src={{pizzaData.image}} alt="Pizza photo">
-    <img *ngIf="!pizzaData.image" mat-card-image src="assets/thumbnail220x150px.png" alt="Pizza photo">
+  <mat-card *ngIf="!editMode">
+    <img *ngIf="pizzaData.image" class="cardImg rounded d-block img-fluid " mat-card-image src={{pizzaData.image}} alt="Pizza photo" 
+    [routerLink]="['/Pizzas', pizzaData.id]" style="cursor: pointer">
+    <img *ngIf="!pizzaData.image" mat-card-image src="assets/thumbnail220x150px.png" alt="Pizza photo" 
+    [routerLink]="['/Pizzas', pizzaData.id]" style="cursor: pointer">
     <mat-card-content style="margin-top: 5px">
       <h4> {{pizzaData.nombre}} </h4>
       <p> Ingredientes: <span class="text-muted" *ngFor="let ingrediente of pizzaData.ingredientes"> {{ingrediente.nombre}}, </span> </p>
       <p> Costo: <strong> ${{pizzaData.costo}} Mxm </strong> </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button [routerLink]="['/Pizzas', pizzaData.id]">SEE MORE</button>
       <button mat-button (click)='openDialogDelete()'
       *ngIf="delete_enabled">DELETE</button>
+      <button mat-button (click)='editMode = true'
+      *ngIf="edit_enabled">EDIT</button>
     </mat-card-actions>
   </mat-card>
+  <app-pizzaform *ngIf="editMode" [pizza]='pizzaData' [isNew]='false' (close)='editMode = false' (update)='updatedPizza()'> </app-pizzaform>
 </div>

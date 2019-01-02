@@ -61,5 +61,25 @@ namespace Pizzeria.Controllers
             }
             return BadRequest(result.Message);
         }
+
+        [HttpDelete("{sucursalId}")]
+        public async Task<IActionResult> DeleteSucursal([FromRoute] int sucursalId)
+        {
+            var result = await this.sucursalBll.DeleteSucursal(sucursalId);
+            if (result.Status)
+            {
+                return Ok();
+            }
+            return BadRequest(result.Message);
+        }
+
+        [HttpPut("{sucursalId}")]
+        public async Task<IActionResult> UpdateSucursal([FromRoute] int sucursalId, [FromBody] Sucursal sucursalUpdated)
+        {
+            var result = await this.sucursalBll.UpdateSucursal(sucursalUpdated, sucursalId);
+            if (result.Status)
+                return Ok(sucursalUpdated);
+            return BadRequest(result.Message);
+        }
     }
 }

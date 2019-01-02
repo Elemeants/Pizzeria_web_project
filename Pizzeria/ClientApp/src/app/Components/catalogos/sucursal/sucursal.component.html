@@ -3,11 +3,15 @@
   <hr>
   <p> <strong> Direccion: </strong> {{sucursal.direccion.direccion}}, {{sucursal.direccion.colonia}} </p>
   <p> <strong> Tel: </strong> {{sucursal.telefono}} </p>
+  <div class="flexContainerRow">
+      <button mat-button style="width: 100px" (click)='editSucursalDialog()'> EDIT </button>
+      <button mat-button style="width: 100px" (click)='deleteSucursal()'> DELETE </button>
+  </div>
   <hr>
   <div>
     <h2> Pizzas disponibles en la sucursal</h2>
     <hr>
-    <div id="grindPizzas" class="col-sm-12 col-md-12 col-lg-12">
+    <div class="col-sm-12 col-md-12 col-lg-12 flexContainerRow">
       <div  *ngFor="let pizza of sucursal.pizzas">
         <app-pizzabase *ngIf="sucursal.pizzas" [pizzaData]='pizza' [isCard]='true' 
         [delete_enabled]='true' (pizzaDeleted)='deletePizzaFromSucursal(pizza)'

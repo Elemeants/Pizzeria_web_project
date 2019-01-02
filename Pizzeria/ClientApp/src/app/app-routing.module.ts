@@ -9,10 +9,9 @@ import { PizzaDetailComponent } from './Components/catalogos/pizza-detail/pizza-
 const routes: Routes = [
   { path: 'Home', component: HomeComponent},
   { path: 'Sucursal/:nombre', component: SucursalComponent},
-  { path: 'Sucursal/Agregar', component: SucursalShowComponent},
   { path: 'Pizzas', component: PizzaComponent},
-  { path: 'Pizzas/:id', component: PizzaDetailComponent},
   { path: 'Pizzas/:id/edit', component: PizzaDetailComponent},
+  { path: 'Pizzas/:id', component: PizzaDetailComponent},
   { path: '**', redirectTo: 'Home', pathMatch: 'full'},
 ];
 

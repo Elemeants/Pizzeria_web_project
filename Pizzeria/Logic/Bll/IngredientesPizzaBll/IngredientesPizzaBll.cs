@@ -39,7 +39,7 @@ namespace Pizzeria.Logic.Bll.IngredientesPizzaBll
         {
             try
             {
-                var entry = new IngredientePizza() { IngredienteId = ingredienteId, PizzaId = pizzaId };
+                var entry = this.dBContext.IngredientePizzas.Where(item => item.IngredienteId == ingredienteId && item.PizzaId == pizzaId).FirstOrDefault();
                 this.dBContext.IngredientePizzas.Remove(entry);
                 await this.dBContext.SaveChangesAsync();
                 this.SetResponseOK();

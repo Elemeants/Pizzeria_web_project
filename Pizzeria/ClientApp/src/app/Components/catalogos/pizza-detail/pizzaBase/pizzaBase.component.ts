@@ -10,14 +10,21 @@ import { MatDialog } from '@angular/material';
 export class PizzaBaseComponent implements OnInit {
   @Input() pizzaData: Pizza;
   @Input() isCard: boolean;
+  @Input() edit_enabled: boolean;
   @Input() delete_enabled: boolean;
   @Output() public pizzaDeleted = new EventEmitter<void>();
+  @Output() public pizzaUpdated = new EventEmitter<void>();
+  private editMode: boolean;
   constructor(public dialog: MatDialog) {
     this.pizzaData = new Pizza();
    }
 
   ngOnInit() {  }
 
+  public updatedPizza() {
+    this.editMode = false;
+    this.pizzaUpdated.next();
+  }
   private openDialogDelete(): void {
     const dialogRef = this.dialog.open(PizzaDeleteDialogComponent, {
       width: '200px',

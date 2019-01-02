@@ -1,0 +1,14 @@
+#mainComponent{
+    text-align:justify; 
+    margin-top: 15px;
+    margin-left: 5%; 
+    margin-right: 5%;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+button {
+    width: 45%;
+}

@@ -124,6 +124,8 @@ namespace Pizzeria.Logic.Bll.SucursalBll
             {
                 sucursal.Id = sucursalId;
                 this.dBContext.Entry(sucursal).State = EntityState.Modified;
+                try { this.dBContext.Entry(sucursal.Direccion).State = EntityState.Modified; }
+                catch (Exception e){ }
                 await this.dBContext.SaveChangesAsync();
                 this.SetResponseOK();
                 return this.OperationResult;

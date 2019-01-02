@@ -19,6 +19,11 @@ export class PizzaService {
   };
   constructor(private _http: HttpClient) { }
 
+  public deconstructUrlImage(pizza: Pizza) {
+    pizza.image = pizza.image.split('/Pizzas/')[1];
+    return pizza;
+  }
+
   public updateUrlImage(pizzas) {
     if (Array.isArray(pizzas)) {
       pizzas.forEach(x => x.image = (endpoints.urlImages + 'Pizzas/' + x.image));
@@ -26,6 +31,16 @@ export class PizzaService {
       pizzas.image = endpoints.urlImages + 'Pizzas/' + pizzas.image;
     }
     return pizzas;
+  }
+
+  public DeleteIngredientesFromPizza(pizza: Pizza) {
+    const urlIngrediente = this.baseUrl + pizza.id + '/';
+    pizza.ingredientes.forEach(element => {
+      this._http.delete(urlIngrediente + element.id).pipe().subscribe(
+        result => {
+          // console.log('@Inserting ingredient to pizza (' + urlIngrediente + element.id + ')');
+        });
+    });
   }
 
   public AddIngredientesToPizza(pizza: Pizza) {

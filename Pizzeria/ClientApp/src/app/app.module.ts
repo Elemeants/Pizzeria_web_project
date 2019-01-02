@@ -1,3 +1,4 @@
+import { SucursalDeleteDialogComponent } from './Components/catalogos/sucursal/sucursalDeleteDialog/sucursalDeleteDialog.component';
 import { DialogPizzaComponent } from './Components/catalogos/pizza/dialogPizza/dialogPizza.component';
 // Angular core imports
 import { BrowserModule } from '@angular/platform-browser';
@@ -41,6 +42,7 @@ import { LoadingComponent } from './Components/loading/loading.component';
 import { PizzaBaseComponent } from './Components/catalogos/pizza-detail/pizzaBase/pizzaBase.component';
 import { PizzaDeleteDialogComponent } from './Components/catalogos/pizza-detail/pizzaBase/pizzaDeleteDialog/pizzaDeleteDialog.component';
 import { PizzaCardSelectorComponent } from './Components/catalogos/sucursal/pizzaCardSelector/pizzaCardSelector.component';
+import { PizzaFormComponent } from './Components/catalogos/pizza/pizzaForm/pizzaForm.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { PizzaCardSelectorComponent } from './Components/catalogos/sucursal/pizz
     PizzaBaseComponent,
     DialogPizzaComponent,
     PizzaDeleteDialogComponent,
-    PizzaCardSelectorComponent
+    PizzaCardSelectorComponent,
+    SucursalDeleteDialogComponent,
+    PizzaFormComponent
   ],
   imports: [
     MatExpansionModule,
@@ -85,6 +89,11 @@ import { PizzaCardSelectorComponent } from './Components/catalogos/sucursal/pizz
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [DialogPizzaComponent, PizzaDeleteDialogComponent]
+  entryComponents: [
+    DialogPizzaComponent,
+    PizzaDeleteDialogComponent,
+    SucursalShowComponent,
+    SucursalDeleteDialogComponent
+  ]
 })
 export class AppModule { }

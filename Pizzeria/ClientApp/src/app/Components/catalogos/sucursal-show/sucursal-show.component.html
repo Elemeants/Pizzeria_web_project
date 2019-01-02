@@ -1,3 +1,39 @@
-<p>
-  sucursal-show works!
-</p>
+<div id="mainComponent">
+  <h4 mat-dialog-title style="text-align: center;"> Datos de la sucursal </h4>
+  <hr>
+  <form [formGroup]="sucursalForm" mat-dialog-content>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Nombre" formControlName="nombre">
+      <mat-error *ngIf="Form.nombre.errors?.required">
+          Nombre es <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Telefono" type="tel" formControlName="telefono">
+      <mat-error *ngIf="Form.telefono.errors?.required">
+          Telefono es <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+    <h5 style="margin-top:15px;"> Datos del domicilio </h5>
+    <form [formGroup]="direccionForm">
+      <mat-form-field>
+        <input matInput type="text" placeholder="Direccion" formControlName="direccion">
+        <mat-error *ngIf="FormDir.direccion.errors?.required">
+            Direccion es <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Colonia" type="text" formControlName="colonia">
+        <mat-error *ngIf="FormDir.colonia.errors?.required">
+            Colonia es <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+    </form>
+    <div mat-dialog-action>
+      <button mat-button (click)="onNoClick()"> CANCEL </button>
+      <button mat-button [disabled]="sucursalForm.invalid || direccionForm.invalid" (click)="returnModalData()" cdkFocusInitial> 
+        {{actionDialog}}
+      </button>
+    </div>
+  </form>
+</div>

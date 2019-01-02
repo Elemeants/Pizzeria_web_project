@@ -2,11 +2,14 @@ import { Pizza } from './../../../Models/Pizza';
 import { SucursalService } from 'src/app/Services/sucursalService/sucursal.service';
 import { Component, OnInit } from '@angular/core';
 import { Sucursal } from 'src/app/Models/Sucursal';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, RouterLink } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { PizzaService } from 'src/app/Services/pizzaService/pizza.service';
 import { PizzaSucursalService } from 'src/app/Services/pizzaSucursal/pizzaSucursal.service';
+import { SucursalDeleteDialogComponent } from './sucursalDeleteDialog/sucursalDeleteDialog.component';
+import { MatDialog } from '@angular/material';
+import { SucursalShowComponent } from '../sucursal-show/sucursal-show.component';
 
 @Component({
   selector: 'app-sucursal',
@@ -22,6 +25,7 @@ export class SucursalComponent implements OnInit {
     private _pizzaSucursalService: PizzaSucursalService,
     private _pizzaService: PizzaService,
     private route: ActivatedRoute,
+    private dialog: MatDialog,
     private location: Location,
     private router: Router) {
       router.events.forEach((event) => {
@@ -39,6 +43,43 @@ export class SucursalComponent implements OnInit {
 
   ngOnInit() {
     this.getNotPizzasInSucursal();
+  }
+
+  public deleteSucursal() {
+    const dialogRef = this.dialog.open(SucursalDeleteDialogComponent, {
+      width: '200px',
+      minHeight: '150px',
+      maxHeight: '200px',
+      data: {data: this.sucursal}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this._sucursalService.DeleteSucursal(this.sucursal.id).subscribe(
+          results => {
+            console.log(results);
+            this.router.navigate(['Home']);
+          }, error => {
+            console.error(error);
+          }
+        );
+      }
+    });
+  }
+
+  private editSucursalDialog(): void {
+    const dialogRef = this.dialog.open(SucursalShowComponent, {
+      width: '300px',
+      height: '500px',
+      data: {sucursal: this.sucursal}
+    });
+    dialogRef.afterClosed().subscribe(
+      result => {
+        if (result) {
+          this.sucursal = result;
+          this.router.navigate(['Sucursal', result.nombre]);
+        }
+      }
+    );
   }
 
   private deletePizzaFromSucursal(pizza: Pizza) {
