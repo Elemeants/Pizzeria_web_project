@@ -92,11 +92,11 @@ export class PizzaFormComponent implements OnInit {
     // console.log(this.newPizza);
     // Process to add a pizza && upload the file
     this.newPizza.id = this.pizza.id;
+    const cachedPizza = this.newPizza;
     this._pizzaService.UpdatePizza(this.newPizza, this.pizza.id)
     .subscribe(
       result => {
-        console.log(this.pizza);
-        console.log(this.newPizza);
+        this.newPizza = cachedPizza;
         this._pizzaService.DeleteIngredientesFromPizza(this.pizza);
         this._pizzaService.AddIngredientesToPizza(this.newPizza);
         if (this.newPizza.image !== this.pizza.image) {
@@ -107,7 +107,12 @@ export class PizzaFormComponent implements OnInit {
           .subscribe(x => {
               // Reset's form data to null
               alert('Pizza actualizada');
+              this.formWait = false;
+              this.newPizzaForm.reset();
+              this.selectedFile = null;
+              this.newPizza = new Pizza();
               this.update.next();
+              this.close.next();
             },
             y => {
               this.formWait = false;
@@ -131,20 +136,26 @@ export class PizzaFormComponent implements OnInit {
     // Log's the object pizza
     // console.log(this.newPizza);
     // Process to add a pizza && upload the file
+    const cachedPizza = this.newPizza;
     this._pizzaService.AddPizza(this.newPizza).subscribe(
       result => {
-        this.newPizza.id = result.id;
-        this._pizzaService.AddIngredientesToPizza(this.newPizza);
+        cachedPizza.id = result.id;
+        this._pizzaService.AddIngredientesToPizza(cachedPizza);
         this._imageService.uploadImage('Pizzas', this.selectedFile)
         .subscribe(x => {
             // Reset's form data to null
             alert('Pizza agregada');
+            this.formWait = false;
+            this.newPizzaForm.reset();
+            this.selectedFile = null;
+            this.newPizza = new Pizza();
             this.update.next();
+            this.close.next();
           },
           y => {
             this.formWait = false;
             alert('Error al subir la imagen');
-            this._pizzaService.DeletePizza(this.newPizza.id);
+            this._pizzaService.DeletePizza(cachedPizza.id);
           });
       },
       error => {

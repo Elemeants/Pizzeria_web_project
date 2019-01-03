@@ -11,7 +11,7 @@
     <mat-card class="cards-css d-flex justify-content-center" *ngIf="!addNew">
         <button mat-button style="width: 100%; height: 100%" (click)="addNew = true">ADD NEW</button>
     </mat-card>
-    <app-pizzaform [isNew]='true' (close)='addNew = false' (update)='getPizzas()' *ngIf="addNew" style="margin: 15px"> </app-pizzaform>
+    <app-pizzaform [isNew]='true' (close)='resetForm()' (update)='getPizzas()' *ngIf="addNew" style="margin: 15px"> </app-pizzaform>
   </div>
   <app-loading *ngIf="!Pizzas && statusPizza == 0"></app-loading>
 </div>

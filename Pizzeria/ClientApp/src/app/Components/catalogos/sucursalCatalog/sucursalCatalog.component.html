@@ -1,0 +1,15 @@
+<div id="mainComponent">
+  <div class="flexContainerRow">
+    <h2> Sucursales </h2>
+  </div>
+  <hr>
+  <div class="col-sm-12 col-md-12 col-lg-12 flexContainerRow">
+    <div *ngFor="let sucursal of Sucursales" class="cards-css d-flex justify-content-center">
+      <app-sucursalcard [sucursal]='sucursal'></app-sucursalcard>
+    </div>
+    <mat-card class="cards-css d-flex justify-content-center">
+      <button mat-button style="width: 100%; height: 100%" 
+      (click)="openDialogSucursal()">ADD NEW</button>
+    </mat-card>
+  </div>
+</div>

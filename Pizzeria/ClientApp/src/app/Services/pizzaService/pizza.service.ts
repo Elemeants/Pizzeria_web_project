@@ -38,7 +38,7 @@ export class PizzaService {
     pizza.ingredientes.forEach(element => {
       this._http.delete(urlIngrediente + element.id).pipe().subscribe(
         result => {
-          // console.log('@Inserting ingredient to pizza (' + urlIngrediente + element.id + ')');
+          console.log('@Deleting ingredient to pizza (' + urlIngrediente + element.id + ')');
         });
     });
   }
@@ -48,7 +48,7 @@ export class PizzaService {
     pizza.ingredientes.forEach(element => {
       this._http.post(urlIngrediente + element.id, '').pipe().subscribe(
         result => {
-          // console.log('@Inserting ingredient to pizza (' + urlIngrediente + element.id + ')');
+          console.log('@Inserting ingredient to pizza (' + urlIngrediente + element.id + ')');
         });
     });
   }

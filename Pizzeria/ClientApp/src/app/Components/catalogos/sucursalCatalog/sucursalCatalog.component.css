@@ -1,0 +1,20 @@
+#mainComponent{
+    text-align:justify; 
+    margin-top: 15px;
+    margin-left: 5%; 
+    margin-right: 5%;
+}
+
+.cards-css{
+    width: 250px !important;
+    height: 250px;
+    margin: 15px;
+}
+
+.flexContainerRow{
+    display: flex; 
+    flex-flow: row wrap;
+    align-items: flex-start;
+}
+a, a:link, a:visited, a:active, a:hover {border:0!important;}
+

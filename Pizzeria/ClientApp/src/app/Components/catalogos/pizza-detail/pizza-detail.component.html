@@ -9,17 +9,7 @@
     <hr>
     <div id="grindSucursales" *ngIf="sucursales" class="col-sm-12 col-md-12 col-lg-12">
       <div *ngFor="let sucursal of sucursales" class="cards-css d-flex justify-content-center">
-        <mat-card>
-            <img mat-card-image src="assets/thumbnail220x150px.png" alt="sucursales photo">
-            <mat-card-content>
-                <h4> {{sucursal.nombre}} </h4>
-                <p *ngIf="sucursales.direccion"> {{sucursal.direccion.direccion}}, {{sucursal.direccion.colonia}} </p>
-                <p> Tel: {{sucursal.telefono}} </p>
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-button [routerLink]="['/Sucursal', sucursal.nombre]">SEE MORE</button>
-            </mat-card-actions>
-          </mat-card>
+        <app-sucursalcard [sucursal]='sucursal'></app-sucursalcard>
       </div>
     </div>
     <div  *ngIf="!sucursales" >

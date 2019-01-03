@@ -39,12 +39,12 @@ export class PizzaDetailComponent implements OnInit {
         this.pizza = result;
         this.pizza = this._pizzaService.updateUrlImage(this.pizza);
         this.image = this.pizza.image;
-      },
-      error => console.error(error)
-    );
-    this._pizzaService.GetSucursalesFromPizza(pizzaId).subscribe(
-      result => {
-        this.sucursales = result;
+        this._pizzaService.GetSucursalesFromPizza(pizzaId).subscribe(
+          result2 => {
+            this.sucursales = result2;
+          },
+          error2 => console.error(error2)
+        );
       },
       error => console.error(error)
     );

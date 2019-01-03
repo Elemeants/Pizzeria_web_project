@@ -48,6 +48,16 @@ namespace Pizzeria.Controllers
                 return BadRequest(result.Message);
             return Ok(result.Data);
         }
+        [HttpGet("Pizzas")]
+        public ActionResult<IEnumerable<Object>> GetSucursalesWithPizzas()
+        {
+            var result = this.sucursalBll.GetSurcursalesWithDetails();
+            if (!result.Status)
+            {
+                return BadRequest(result.Message);
+            }
+            return Ok(result.Data);
+        }
 
         [HttpPost]
         public async Task<IActionResult> AddSucursal([FromBody] Sucursal sucursal)

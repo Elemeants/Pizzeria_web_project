@@ -5,9 +5,11 @@ import { SucursalShowComponent } from './Components/catalogos/sucursal-show/sucu
 import { SucursalComponent } from './Components/catalogos/sucursal/sucursal.component';
 import { PizzaComponent } from './Components/catalogos/pizza/pizza.component';
 import { PizzaDetailComponent } from './Components/catalogos/pizza-detail/pizza-detail.component';
+import { SucursalCatalogComponent } from './Components/catalogos/sucursalCatalog/sucursalCatalog.component';
 
 const routes: Routes = [
   { path: 'Home', component: HomeComponent},
+  { path: 'ListSucur', component: SucursalCatalogComponent},
   { path: 'Sucursal/:nombre', component: SucursalComponent},
   { path: 'Pizzas', component: PizzaComponent},
   { path: 'Pizzas/:id/edit', component: PizzaDetailComponent},

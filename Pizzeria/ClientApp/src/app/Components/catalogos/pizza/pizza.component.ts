@@ -77,70 +77,13 @@ export class PizzaComponent implements OnInit {
       });
   }
 
+  resetForm() {
+    console.log('resetForm');
+    this.addNew = false;
+  }
+
   private setPizzas(pizzas: Pizza[]) {
     this._pizzaService.updateUrlImage(pizzas);
     this.Pizzas = pizzas;
-  }
-
-  private AddPizza() {
-    // Reading the data from the form
-    this.formWait = true;
-    this.newPizza.nombre = this.newPizzaForm.value['nombre'];
-    this.newPizza.costo = this.newPizzaForm.value['costo'];
-    // Log's the object pizza
-    // console.log(this.newPizza);
-    // Process to add a pizza && upload the file
-    this._pizzaService.AddPizza(this.newPizza).subscribe(
-      result => {
-        this.newPizza.id = result.id;
-        this._pizzaService.AddIngredientesToPizza(this.newPizza);
-        this._imageService.uploadImage('Pizzas', this.selectedFile)
-        .subscribe(x => {
-            // Reset's form data to null
-            alert('Pizza agregada');
-            this.resetForm();
-          },
-          y => {
-            this.formWait = false;
-            alert('Error al subir la imagen');
-            this._pizzaService.DeletePizza(this.newPizza.id);
-          });
-      },
-      error => {
-        console.error(error);
-        this.formWait = false;
-        alert('Hubo un error al agregar la pizza');
-      }
-    );
-  }
-
-  public trackItem(index: number, item: Pizza) {
-    return item.id;
-  }
-
-  private resetForm() {
-    this.newPizzaForm.reset();
-    this.newPizza = new Pizza();
-    this.selectedFile = null;
-    this.addNew = false;
-    this.formWait = false;
-    this.getPizzas();
-  }
-
-  onFileChanged(event) {
-    this.selectedFile = event.target.files[0];
-    this.newPizza.image = this.selectedFile.name;
-  }
-
-  private openDialog(): void {
-    const dialogRef = this.dialog.open(DialogPizzaComponent, {
-      width: '250px',
-      minHeight: '200px',
-      maxHeight: '500px',
-      data: {select: this.newPizza.ingredientes}
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      this.newPizza.ingredientes = result;
-    });
   }
 }

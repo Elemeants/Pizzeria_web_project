@@ -82,17 +82,27 @@ namespace Pizzeria.Logic.Bll.SucursalBll
         {
             try
             {
-                List<Object> sucursales = new List<Object>();
-                var nSucursales = this.dBContext.Sucursales.Select(x => x.Id).ToList();
-                foreach (var pId in nSucursales)
+                var sucursales = this.dBContext.Sucursales.Include(x => x.Direccion).Include(x => x.PizzasSucursals).ToList();
+                List<Object> sucursalList = new List<Object>();
+                sucursales.ForEach(x =>
                 {
-                    var data = this.pizzasSucursalBll.GetPizzasInSucursal(pId);
-                    sucursales.Add(data.Status ? data.Data : null);
+                    x.Direccion.Sucursal = null;
+                    var Pizzas = this.dBContext.PizzasSucursals.Where(item => item.SucursalId == x.Id).Select(item => item.pizza).ToList();
+                    Pizzas.ForEach(item => item.PizzasSucursals = null);
+                    sucursalList.Add(new
+                    {
+                        x.Id,
+                        x.Telefono,
+                        x.Nombre,
+                        x.Direccion,
+                        Pizzas
+                    });
                 }
-                this.OperationResult.Data = sucursales;
+                );
+                this.OperationResult.Data = sucursalList;
                 this.SetResponseOK();
                 if (sucursales.Count() == 0)
-                    this.SetResponseFail("No hay sucursales guardadas");
+                    this.OperationResult.Data = null;
                 return this.OperationResult;
             }
             catch (Exception)

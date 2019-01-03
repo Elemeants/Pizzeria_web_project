@@ -1,0 +1,10 @@
+<mat-card class="cards-css">
+  <mat-card-content>
+    <h4 style="margin-bottom: 15px;"> <strong> {{sucursal.nombre}} </strong> </h4>
+    <p> {{sucursal.direccion.direccion}}, {{sucursal.direccion.colonia}} </p>
+    <p> Tel: {{sucursal.telefono}} </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [routerLink]="['/Sucursal', sucursal.nombre]">SEE MORE</button>
+  </mat-card-actions>
+</mat-card>

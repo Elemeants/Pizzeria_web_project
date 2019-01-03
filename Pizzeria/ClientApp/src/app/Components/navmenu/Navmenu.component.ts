@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { HostListener } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { SucursalShowComponent } from '../catalogos/sucursal-show/sucursal-show.component';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-navmenu',
@@ -46,7 +47,7 @@ export class NavmenuComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       result => {
         if (result) {
-          this.getSucursales();
+          this.Sucursales.push(result);
         }
       }
     );

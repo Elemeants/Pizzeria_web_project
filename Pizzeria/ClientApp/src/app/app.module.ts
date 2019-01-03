@@ -1,3 +1,4 @@
+import { ExcelService } from './Services/excelService/excel.service';
 import { SucursalDeleteDialogComponent } from './Components/catalogos/sucursal/sucursalDeleteDialog/sucursalDeleteDialog.component';
 import { DialogPizzaComponent } from './Components/catalogos/pizza/dialogPizza/dialogPizza.component';
 // Angular core imports
@@ -43,6 +44,12 @@ import { PizzaBaseComponent } from './Components/catalogos/pizza-detail/pizzaBas
 import { PizzaDeleteDialogComponent } from './Components/catalogos/pizza-detail/pizzaBase/pizzaDeleteDialog/pizzaDeleteDialog.component';
 import { PizzaCardSelectorComponent } from './Components/catalogos/sucursal/pizzaCardSelector/pizzaCardSelector.component';
 import { PizzaFormComponent } from './Components/catalogos/pizza/pizzaForm/pizzaForm.component';
+import { SucursalCatalogComponent } from './Components/catalogos/sucursalCatalog/sucursalCatalog.component';
+import { SucursalCardComponent } from './Components/catalogos/sucursalCatalog/sucursalCard/sucursalCard.component';
+import { PizzaService } from './Services/pizzaService/pizza.service';
+import { SucursalService } from './Services/sucursalService/sucursal.service';
+import { PizzaSucursalService } from './Services/pizzaSucursal/pizzaSucursal.service';
+import { ImageService } from './Services/imageService/image.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +67,9 @@ import { PizzaFormComponent } from './Components/catalogos/pizza/pizzaForm/pizza
     PizzaDeleteDialogComponent,
     PizzaCardSelectorComponent,
     SucursalDeleteDialogComponent,
-    PizzaFormComponent
+    PizzaFormComponent,
+    SucursalCatalogComponent,
+    SucursalCardComponent
   ],
   imports: [
     MatExpansionModule,
@@ -87,7 +96,13 @@ import { PizzaFormComponent } from './Components/catalogos/pizza/pizzaForm/pizza
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    ExcelService,
+    PizzaService,
+    SucursalService,
+    PizzaSucursalService,
+    ImageService
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     DialogPizzaComponent,
