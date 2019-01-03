@@ -15,6 +15,11 @@ export class SucursalService {
       'Content-Type':  'application/json'
     })
   };
+
+  public GetSucursalesWithPizzas() {
+    return this._http.get<Sucursal[]>(this.baseUrl + 'Pizzas').pipe();
+  }
+
   public GetSucursales(): Observable<Sucursal[]> {
     return this._http.get<Sucursal[]>(this.baseUrl).pipe();
   }

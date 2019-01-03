@@ -1,3 +1,4 @@
+import { ExcelService } from './../../../Services/excelService/excel.service';
 import { Component, OnInit } from '@angular/core';
 import { SucursalService } from 'src/app/Services/sucursalService/sucursal.service';
 import { Sucursal } from 'src/app/Models/Sucursal';
@@ -12,6 +13,7 @@ import { SucursalShowComponent } from '../sucursal-show/sucursal-show.component'
 export class SucursalCatalogComponent implements OnInit {
   public Sucursales: Sucursal[];
   constructor(private _sucursalService: SucursalService,
+    private _excelService: ExcelService,
     public dialog: MatDialog) {
     this.Sucursales = [];
   }
@@ -41,6 +43,16 @@ export class SucursalCatalogComponent implements OnInit {
           this.Sucursales.push(result);
           this.getSucursales();
         }
+      }
+    );
+  }
+
+  public exportToExcel(event) {
+    this._sucursalService.GetSucursalesWithPizzas().subscribe(
+      result => {
+        this._excelService.exportAsExcelFile(result, 'Sucursals');
+      }, error => {
+        console.error(error);
       }
     );
   }

@@ -12,9 +12,9 @@
 }
 
 .flexContainerRow{
-    display: flex; 
+    display: inline-flex; 
     flex-flow: row wrap;
-    align-items: flex-start;
+    align-items: center;
 }
 a, a:link, a:visited, a:active, a:hover {border:0!important;}
 
