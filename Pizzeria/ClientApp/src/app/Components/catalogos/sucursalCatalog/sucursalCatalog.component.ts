@@ -75,17 +75,18 @@ export class SucursalCatalogComponent implements OnInit {
 
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(SucursalsData, {});
     worksheet['!cols'] = worksheetColumnsWidth;
-    let PizzasData: any[] = [];
+
     const coords = {c: 5, r: 0};
     json.forEach(sucursal => {
+      const PizzasData: any[] = [];
+      const nameSucursal = sucursal.nombre;
       sucursal.pizzas.forEach(pizza => {
-        XLSX.utils.sheet_add_json(worksheet, [pizza.nombre], {origin: coords});
-        coords.r ++;
+        PizzasData.push({[nameSucursal]: pizza.nombre});
       });
+      console.log(PizzasData);
+      XLSX.utils.sheet_add_json(worksheet, PizzasData, {origin: coords, skipHeader: false});
       worksheet['!cols'].push({wch: 20});
       coords.c ++;
-      coords.r = 0;
-      PizzasData = new Array<any>();
     });
 
     console.log(worksheet);
