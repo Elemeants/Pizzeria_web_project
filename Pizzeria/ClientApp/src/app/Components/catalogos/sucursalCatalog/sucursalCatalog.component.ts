@@ -53,7 +53,6 @@ export class SucursalCatalogComponent implements OnInit {
   }
 
   public exportAsExcelFile(json: Sucursal[], excelFileName: string): void {
-    console.log(json);
     const SucursalsData: any[] = [];
     const data = Object.values(json);
       Object.keys(data).forEach((key, index) => {
@@ -79,17 +78,13 @@ export class SucursalCatalogComponent implements OnInit {
     const coords = {c: 5, r: 0};
     json.forEach(sucursal => {
       const PizzasData: any[] = [];
-      const nameSucursal = sucursal.nombre;
       sucursal.pizzas.forEach(pizza => {
-        PizzasData.push({[nameSucursal]: pizza.nombre});
+        PizzasData.push({['Pizzas en ' + sucursal.nombre]: (pizza.nombre + ', $' + pizza.costo)});
       });
-      console.log(PizzasData);
-      XLSX.utils.sheet_add_json(worksheet, PizzasData, {origin: coords, skipHeader: false});
-      worksheet['!cols'].push({wch: 20});
+      XLSX.utils.sheet_add_json(worksheet, PizzasData, {origin: coords});
+      worksheet['!cols'].push({wch: 35});
       coords.c ++;
     });
-
-    console.log(worksheet);
 
     const workbook: XLSX.WorkBook = {Sheets: {'Sucursales Info': worksheet}, SheetNames: ['Sucursales Info']};
     XLSX.writeFile(workbook, this.toExportFileName(excelFileName));
