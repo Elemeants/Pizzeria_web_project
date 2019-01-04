@@ -102,8 +102,9 @@ namespace Pizzeria.Logic.Bll.PizzasSucursalBll
             {
                 var pizzasSucursal = this.dBcontext.PizzasSucursals
                     .Where(x => x.SucursalId == sucursalId)
-                    .Include(x => x.pizza)
-                    .Select(x => x.pizza).ToList();
+                    .Include(x => x.pizza).Select(x => x.pizza)
+                    .Include(y => y.IngredientePizzas).ThenInclude(y => y.ingrediente)
+                    .ToList();
                 this.OperationResult.Data = pizzasSucursal;
                 this.SetResponseOK();
                 if (pizzasSucursal.Count() == 0)
