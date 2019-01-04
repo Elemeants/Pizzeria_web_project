@@ -27,12 +27,12 @@ npm install xlsx --save
 npm install --save @angular/material @angular/cdk @angular/animations
 ```
 
-1. Should you replace the connection string to your Database inside 'Appsettings.json'
+3. Should you replace the connection string to your Database inside 'Appsettings.json'
 
-2. Run a update database to generate the DB in your server inside nuget package console
+4. Run a update database to generate the DB in your server inside nuget package console
 
 ```
 update-database
 ```
 
-1. Run in mode IIS
+5. Run in mode IIS
