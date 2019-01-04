@@ -34,7 +34,6 @@ export class PizzaFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.isNew);
     if (!this.pizza) {
       this.actionResult = 'AGREGAR';
     } else {
@@ -72,6 +71,7 @@ export class PizzaFormComponent implements OnInit {
   }
 
   public resetForm() {
+    this._pizzaService.updateUrlImage(this.pizza);
     this.close.next();
   }
 
