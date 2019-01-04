@@ -1,5 +1,4 @@
-#Pizzeria web project
-
+# Pizzeria web project
 ## Description
 
 Pizzeria app project training is maded in Angular, ASP.net Core 2.1 and SQL Server.
