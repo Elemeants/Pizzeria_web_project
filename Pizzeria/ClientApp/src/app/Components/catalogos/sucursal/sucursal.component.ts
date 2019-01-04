@@ -152,6 +152,7 @@ export class SucursalComponent implements OnInit {
       result => {
         if (result) {
           this.sucursal = result;
+          console.log(this.sucursal);
           if (this.sucursal.pizzas) {
             this.sucursal.pizzas = this._pizzaService.updateUrlImage(this.sucursal.pizzas);
           } else {

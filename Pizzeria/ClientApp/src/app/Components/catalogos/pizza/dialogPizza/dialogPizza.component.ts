@@ -11,6 +11,7 @@ import { Ingrediente } from 'src/app/Models/Ingrediente';
 export class DialogPizzaComponent {
   public dialogSelection: Ingrediente[];
   public status: boolean[];
+  private originalSelection: [];
   constructor(
     public dialogRef: MatDialogRef<DialogPizzaComponent>,
     @Inject(MAT_DIALOG_DATA) public inputData: any,
@@ -21,6 +22,7 @@ export class DialogPizzaComponent {
         result => {
           this.dialogSelection = result;
           if (inputData['select']) {
+            this.originalSelection = inputData['select'];
             this.buildCheckPoints(inputData['select']);
           }
         },
@@ -35,7 +37,7 @@ export class DialogPizzaComponent {
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(this.originalSelection);
   }
 
   private getData(): Array<Ingrediente> {

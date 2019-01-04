@@ -100,15 +100,20 @@ namespace Pizzeria.Logic.Bll.PizzasSucursalBll
         {
             try
             {
+                var pizzas = new List<Object>();
                 var pizzasSucursal = this.dBcontext.PizzasSucursals
                     .Where(x => x.SucursalId == sucursalId)
                     .Include(x => x.pizza).Select(x => x.pizza)
-                    .Include(y => y.IngredientePizzas).ThenInclude(y => y.ingrediente)
                     .ToList();
-                this.OperationResult.Data = pizzasSucursal;
+                pizzasSucursal.ForEach(item =>
+                {
+                    var ingredientes = this.dBcontext.IngredientePizzas.Where(x => x.PizzaId == item.Id).Select(x => x.ingrediente).ToList();
+                    pizzas.Add(new { item.Id, item.Nombre, item.Image, item.Costo, ingredientes });
+                });
+                this.OperationResult.Data = pizzas;
                 this.SetResponseOK();
                 if (pizzasSucursal.Count() == 0)
-                    this.OperationResult.Data = null;
+                    this.OperationResult.Data = new List<Object>();
                 return this.OperationResult;
             }
             catch (Exception)
