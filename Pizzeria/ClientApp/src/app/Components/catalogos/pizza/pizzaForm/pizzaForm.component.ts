@@ -71,7 +71,9 @@ export class PizzaFormComponent implements OnInit {
   }
 
   public resetForm() {
-    this._pizzaService.updateUrlImage(this.pizza);
+    if (this.pizza) {
+      this._pizzaService.updateUrlImage(this.pizza);
+    }
     this.close.next();
   }
 

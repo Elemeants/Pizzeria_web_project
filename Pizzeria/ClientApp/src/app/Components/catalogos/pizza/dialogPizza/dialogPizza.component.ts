@@ -2,6 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { IngredienteService } from 'src/app/Services/pizzaService/ingredienteService/ingrediente.service';
 import { Ingrediente } from 'src/app/Models/Ingrediente';
+import { MatDialog } from '@angular/material';
+import { DialogIngredienteComponent } from './dialogIngrediente/dialogIngrediente.component';
 
 @Component({
   selector: 'app-dialogpizza',
@@ -15,6 +17,7 @@ export class DialogPizzaComponent {
   constructor(
     public dialogRef: MatDialogRef<DialogPizzaComponent>,
     @Inject(MAT_DIALOG_DATA) public inputData: any,
+    public dialog: MatDialog,
     private _ingredienteService: IngredienteService) {
       this.status = new Array<boolean>();
       this.dialogSelection = new Array<Ingrediente>();
@@ -38,6 +41,15 @@ export class DialogPizzaComponent {
 
   onNoClick(): void {
     this.dialogRef.close(this.originalSelection);
+  }
+
+  private openNewIngrediente(): void {
+    const dialogRef = this.dialog.open(DialogIngredienteComponent, {
+      width: '250px',
+      height: '200px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
   private getData(): Array<Ingrediente> {

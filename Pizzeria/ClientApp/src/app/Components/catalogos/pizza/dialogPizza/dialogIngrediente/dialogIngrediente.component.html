@@ -1,0 +1,15 @@
+<h3 mat-dialog-title>Ingresa el nombre</h3>
+<div mat-dialog-content>
+  <form [formGroup]="ingredienteForm">
+    <mat-form-field>
+      <input matInput type="text" placeholder="Ingrediente" formControlName="nombre">
+      <mat-error *ngIf="Form.nombre.errors?.required">
+          Nombre es <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()"> Cancel </button>
+  <button mat-button (click)="AddIngrediente()" [disabled]='Form.nombre.errors?.required' cdkFocusInitial>Agregar</button>
+</div>

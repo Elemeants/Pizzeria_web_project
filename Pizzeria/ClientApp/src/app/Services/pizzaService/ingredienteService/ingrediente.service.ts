@@ -18,4 +18,9 @@ export class IngredienteService {
   public GetIngredientes(): Observable<Ingrediente[]> {
     return this._http.get<Ingrediente[]>(this.baseUrl).pipe();
   }
+
+  public AddIgrediente(ingrediente: Ingrediente) {
+    console.log(ingrediente);
+    return this._http.post(this.baseUrl, ingrediente).pipe();
+  }
 }

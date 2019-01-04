@@ -50,6 +50,7 @@ import { PizzaService } from './Services/pizzaService/pizza.service';
 import { SucursalService } from './Services/sucursalService/sucursal.service';
 import { PizzaSucursalService } from './Services/pizzaSucursal/pizzaSucursal.service';
 import { ImageService } from './Services/imageService/image.service';
+import { DialogIngredienteComponent } from './Components/catalogos/pizza/dialogPizza/dialogIngrediente/dialogIngrediente.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { ImageService } from './Services/imageService/image.service';
     SucursalDeleteDialogComponent,
     PizzaFormComponent,
     SucursalCatalogComponent,
-    SucursalCardComponent
+    SucursalCardComponent,
+    DialogIngredienteComponent
   ],
   imports: [
     MatExpansionModule,
@@ -108,7 +110,8 @@ import { ImageService } from './Services/imageService/image.service';
     DialogPizzaComponent,
     PizzaDeleteDialogComponent,
     SucursalShowComponent,
-    SucursalDeleteDialogComponent
+    SucursalDeleteDialogComponent,
+    DialogIngredienteComponent
   ]
 })
 export class AppModule { }

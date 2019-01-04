@@ -1,5 +1,6 @@
+export const urlBase = 'https://localhost:44351/';
+
 export const endpoints = {
-    urlApi: 'https://localhost:44351/api/',
-    urlBase: 'https://localhost:44351/',
-    urlImages: 'https://localhost:44351/Image/'
+    urlApi: urlBase + 'api/',
+    urlImages: urlBase + 'Image/'
 };
