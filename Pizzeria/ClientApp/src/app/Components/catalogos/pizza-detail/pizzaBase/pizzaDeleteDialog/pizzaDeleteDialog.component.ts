@@ -8,7 +8,7 @@ import { Pizza } from 'src/app/Models/Pizza';
   styleUrls: ['./pizzaDeleteDialog.component.css']
 })
 export class PizzaDeleteDialogComponent {
-  private pizzaData: Pizza;
+  public pizzaData: Pizza;
   constructor(
     public dialogRef: MatDialogRef<PizzaDeleteDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public inputData: any) {
@@ -19,7 +19,7 @@ export class PizzaDeleteDialogComponent {
     this.dialogRef.close(false);
   }
 
-  private getResponse(): boolean {
+  public getResponse(): boolean {
     return true;
   }
 }

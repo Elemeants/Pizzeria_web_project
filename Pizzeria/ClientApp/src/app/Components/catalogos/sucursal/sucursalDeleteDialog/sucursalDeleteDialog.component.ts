@@ -8,7 +8,7 @@ import { Sucursal } from 'src/app/Models/Sucursal';
   styleUrls: ['./sucursalDeleteDialog.component.css']
 })
 export class SucursalDeleteDialogComponent {
-  private sucursal: Sucursal;
+  public sucursal: Sucursal;
   constructor(public dialogRef: MatDialogRef<SucursalDeleteDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public inputData: any) {
       this.sucursal = inputData['data'];
@@ -18,7 +18,7 @@ export class SucursalDeleteDialogComponent {
     this.dialogRef.close(false);
   }
 
-  private getResponse(): boolean {
+  public getResponse(): boolean {
     return true;
   }
 }

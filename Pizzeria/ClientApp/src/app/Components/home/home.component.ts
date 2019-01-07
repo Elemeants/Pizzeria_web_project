@@ -9,18 +9,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  private Sucursales: Sucursal[];
-  private Pizzas: Pizza[];
-  private statusPizza: number;
-  constructor(private _pizzaService: PizzaService,
-    private _sucursalService: SucursalService) { }
+  public Sucursales: Sucursal[];
+  public Pizzas: Pizza[];
+  public statusPizza: number;
+  constructor(public _pizzaService: PizzaService,
+    public _sucursalService: SucursalService) { }
 
   ngOnInit() {
     this.getPizzas();
     this._sucursalService.GetSucursales().subscribe(result => this.setSucursales(result), error => console.error(error));
   }
 
-  private getPizzas() {
+  public getPizzas() {
     this._pizzaService.GetPizzasWithIngredientes()
       .subscribe(
       result => {
@@ -37,12 +37,12 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  private setPizzas(pizzas: Pizza[]) {
+  public setPizzas(pizzas: Pizza[]) {
     this._pizzaService.updateUrlImage(pizzas);
     this.Pizzas = pizzas;
   }
 
-  private setSucursales(sucursales: Sucursal[]) {
+  public setSucursales(sucursales: Sucursal[]) {
     this.Sucursales = sucursales;
   }
 

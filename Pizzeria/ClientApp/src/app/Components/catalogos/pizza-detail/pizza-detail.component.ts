@@ -13,13 +13,13 @@ import { endpoints } from 'src/app/Services/endpoints';
   styleUrls: ['./pizza-detail.component.css']
 })
 export class PizzaDetailComponent implements OnInit {
-  private image: string;
-  private pizza: Pizza;
-  private sucursales: Sucursal[];
-  constructor(private _pizzaService: PizzaService,
-    private route: ActivatedRoute,
-    private location: Location,
-    private router: Router) {
+  public image: string;
+  public pizza: Pizza;
+  public sucursales: Sucursal[];
+  constructor(public _pizzaService: PizzaService,
+    public route: ActivatedRoute,
+    public location: Location,
+    public router: Router) {
       router.events.forEach((event) => {
         if (event instanceof NavigationEnd) {
           this.route.params.subscribe(
@@ -33,7 +33,7 @@ export class PizzaDetailComponent implements OnInit {
   ngOnInit() {
   }
 
-  private getPizza(pizzaId: number) {
+  public getPizza(pizzaId: number) {
     this._pizzaService.GetPizza(pizzaId).subscribe(
       result => {
         this.pizza = result;

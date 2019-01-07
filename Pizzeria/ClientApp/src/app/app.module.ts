@@ -1,6 +1,3 @@
-import { ExcelService } from './Services/excelService/excel.service';
-import { SucursalDeleteDialogComponent } from './Components/catalogos/sucursal/sucursalDeleteDialog/sucursalDeleteDialog.component';
-import { DialogPizzaComponent } from './Components/catalogos/pizza/dialogPizza/dialogPizza.component';
 // Angular core imports
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -51,6 +48,8 @@ import { SucursalService } from './Services/sucursalService/sucursal.service';
 import { PizzaSucursalService } from './Services/pizzaSucursal/pizzaSucursal.service';
 import { ImageService } from './Services/imageService/image.service';
 import { DialogIngredienteComponent } from './Components/catalogos/pizza/dialogPizza/dialogIngrediente/dialogIngrediente.component';
+import { SucursalDeleteDialogComponent } from './Components/catalogos/sucursal/sucursalDeleteDialog/sucursalDeleteDialog.component';
+import { DialogPizzaComponent } from './Components/catalogos/pizza/dialogPizza/dialogPizza.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +98,6 @@ import { DialogIngredienteComponent } from './Components/catalogos/pizza/dialogP
     AppRoutingModule
   ],
   providers: [
-    ExcelService,
     PizzaService,
     SucursalService,
     PizzaSucursalService,

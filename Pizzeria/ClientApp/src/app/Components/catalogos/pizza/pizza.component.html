@@ -2,7 +2,7 @@
   <h2> Pizzas disponibles </h2>
   <hr>
   <div id="grindPizzas" class="col-sm-12 col-md-12 col-lg-12">
-    <div *ngFor="let pizza of Pizzas; trackBy: trackItem" class="cards-css d-flex justify-content-center">
+    <div *ngFor="let pizza of Pizzas" class="cards-css d-flex justify-content-center">
         <app-pizzabase [pizzaData]='pizza' [isCard]='true' [delete_enabled]='true' [edit_enabled]='true' 
         (pizzaDeleted)='DeletePizza(pizza)' (pizzaUpdated)='getPizzas()'
         *ngIf="Pizzas && statusPizza == 1"></app-pizzabase>

@@ -13,16 +13,16 @@ import { ImageService } from 'src/app/Services/imageService/image.service';
   styleUrls: ['./pizza.component.css']
 })
 export class PizzaComponent implements OnInit {
-  constructor(private _pizzaService: PizzaService,
-    private _imageService: ImageService,
+  constructor(public _pizzaService: PizzaService,
+    public _imageService: ImageService,
     public dialog: MatDialog,
-    private formBuilder: FormBuilder) { this.newPizza = new Pizza(); }
-  private addNew: boolean;
-  private formWait: boolean;
-  private statusPizza: number;
-  private Pizzas: Pizza[];
-  private newPizza: Pizza;
-  private newPizzaForm: FormGroup;
+    public formBuilder: FormBuilder) { this.newPizza = new Pizza(); }
+  public addNew: boolean;
+  public formWait: boolean;
+  public statusPizza: number;
+  public Pizzas: Pizza[];
+  public newPizza: Pizza;
+  public newPizzaForm: FormGroup;
   public selectedFile: File;
 
   ngOnInit() {
@@ -37,7 +37,7 @@ export class PizzaComponent implements OnInit {
     return this.newPizzaForm.controls;
   }
 
-  private DeletePizza(pizza: Pizza) {
+  public DeletePizza(pizza: Pizza) {
     this._pizzaService.DeletePizza(pizza.id).subscribe(
       result => {
         this._imageService.deleteImage('Pizzas',
@@ -60,7 +60,7 @@ export class PizzaComponent implements OnInit {
     );
   }
 
-  private getPizzas() {
+  public getPizzas() {
     this._pizzaService.GetPizzasWithIngredientes()
       .subscribe(
       result => {
@@ -82,7 +82,7 @@ export class PizzaComponent implements OnInit {
     this.addNew = false;
   }
 
-  private setPizzas(pizzas: Pizza[]) {
+  public setPizzas(pizzas: Pizza[]) {
     this._pizzaService.updateUrlImage(pizzas);
     this.Pizzas = pizzas;
   }

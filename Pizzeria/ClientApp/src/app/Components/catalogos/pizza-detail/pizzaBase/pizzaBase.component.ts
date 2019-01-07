@@ -14,7 +14,7 @@ export class PizzaBaseComponent implements OnInit {
   @Input() delete_enabled: boolean;
   @Output() public pizzaDeleted = new EventEmitter<void>();
   @Output() public pizzaUpdated = new EventEmitter<void>();
-  private editMode: boolean;
+  public editMode: boolean;
   constructor(public dialog: MatDialog) {
     this.pizzaData = new Pizza();
    }
@@ -25,7 +25,7 @@ export class PizzaBaseComponent implements OnInit {
     this.editMode = false;
     this.pizzaUpdated.next();
   }
-  private openDialogDelete(): void {
+  public openDialogDelete(): void {
     const dialogRef = this.dialog.open(PizzaDeleteDialogComponent, {
       width: '200px',
       minHeight: '150px',

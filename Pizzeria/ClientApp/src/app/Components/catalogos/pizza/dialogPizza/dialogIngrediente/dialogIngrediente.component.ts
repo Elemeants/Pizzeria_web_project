@@ -10,8 +10,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./dialogIngrediente.component.css']
 })
 export class DialogIngredienteComponent implements OnInit {
-  private ingrediente: Ingrediente;
-  private ingredienteForm: FormGroup;
+  public ingrediente: Ingrediente;
+  public ingredienteForm: FormGroup;
   constructor(
     public dialogRef: MatDialogRef<DialogIngredienteComponent>,
     @Inject(MAT_DIALOG_DATA) public inputData: any,
@@ -29,10 +29,12 @@ export class DialogIngredienteComponent implements OnInit {
   onNoClick() {
     this.dialogRef.close();
   }
+
   get Form() {
     return this.ingredienteForm.controls;
   }
-  private AddIngrediente() {
+
+  public AddIngrediente() {
     this.ingrediente.nombre = this.ingredienteForm.value['nombre'];
     this._ingredienteService.AddIgrediente(this.ingrediente).subscribe(
       result => {

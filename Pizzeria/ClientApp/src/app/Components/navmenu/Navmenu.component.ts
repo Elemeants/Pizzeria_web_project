@@ -7,8 +7,8 @@ import { HostListener } from '@angular/core';
   styleUrls: ['./navmenu.component.css']
 })
 export class NavmenuComponent implements OnInit {
-  private screenHeight: number;
-  private screenWidth: number;
+  public over = 'over';
+  public screenWidth: number;
   constructor() {
     this.onResize();
   }
@@ -17,7 +17,6 @@ export class NavmenuComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
-    this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
   }
 }

@@ -23,9 +23,9 @@ export class SucursalShowComponent {
   get FormDir() {
     return this.direccionForm.controls;
   }
-  constructor(private _sucursalService: SucursalService,
-    private _direccionService: DireccionService,
-    private formBuilder: FormBuilder,
+  constructor(public _sucursalService: SucursalService,
+    public _direccionService: DireccionService,
+    public formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<SucursalShowComponent>,
     @Inject(MAT_DIALOG_DATA) public inputData: any) {
       this.sucursalForm = this.formBuilder.group({
@@ -58,7 +58,7 @@ export class SucursalShowComponent {
     this.dialogRef.close();
   }
 
-  private returnModalData() {
+  public returnModalData() {
     const sucursal: Sucursal = this.sucursalForm.value;
     sucursal.direccion = this.direccionForm.value;
     console.log(sucursal);

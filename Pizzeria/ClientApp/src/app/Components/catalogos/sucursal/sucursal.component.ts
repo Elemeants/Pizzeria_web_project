@@ -17,17 +17,17 @@ import { SucursalShowComponent } from '../sucursal-show/sucursal-show.component'
   styleUrls: ['./sucursal.component.css']
 })
 export class SucursalComponent implements OnInit {
-  private sucursal: Sucursal;
-  private statusPizza: number;
-  private Pizzas: Pizza[];
-  private PizzasNotSucursal: Pizza[];
-  constructor(private _sucursalService: SucursalService,
-    private _pizzaSucursalService: PizzaSucursalService,
-    private _pizzaService: PizzaService,
-    private route: ActivatedRoute,
-    private dialog: MatDialog,
-    private location: Location,
-    private router: Router) {
+  public sucursal: Sucursal;
+  public statusPizza: number;
+  public Pizzas: Pizza[];
+  public PizzasNotSucursal: Pizza[];
+  constructor(public _sucursalService: SucursalService,
+    public _pizzaSucursalService: PizzaSucursalService,
+    public _pizzaService: PizzaService,
+    public route: ActivatedRoute,
+    public dialog: MatDialog,
+    public location: Location,
+    public router: Router) {
       router.events.forEach((event) => {
         this.PizzasNotSucursal = new Array<Pizza>();
         this.Pizzas = new Array<Pizza>();
@@ -66,7 +66,7 @@ export class SucursalComponent implements OnInit {
     });
   }
 
-  private editSucursalDialog(): void {
+  public editSucursalDialog(): void {
     const dialogRef = this.dialog.open(SucursalShowComponent, {
       width: '300px',
       height: '500px',
@@ -82,7 +82,7 @@ export class SucursalComponent implements OnInit {
     );
   }
 
-  private deletePizzaFromSucursal(pizza: Pizza) {
+  public deletePizzaFromSucursal(pizza: Pizza) {
     this._pizzaSucursalService.deletePizzaFromSucursal(pizza, this.sucursal)
     .subscribe(
       result => {
@@ -105,7 +105,7 @@ export class SucursalComponent implements OnInit {
     );
   }
 
-  private AddPizzatoSucursal(pizza: Pizza) {
+  public AddPizzatoSucursal(pizza: Pizza) {
     this._pizzaSucursalService.AddPizzaToSucursal(pizza, this.sucursal).subscribe(
       result => {
         this.sucursal.pizzas.push(pizza);
@@ -118,7 +118,7 @@ export class SucursalComponent implements OnInit {
     );
   }
 
-  private getNotPizzasInSucursal() {
+  public getNotPizzasInSucursal() {
     this.PizzasNotSucursal = new Array<Pizza>();
     this.Pizzas.forEach(
       (item) => {
@@ -128,7 +128,7 @@ export class SucursalComponent implements OnInit {
       });
   }
 
-  private getPizzas() {
+  public getPizzas() {
     this._pizzaService.GetPizzasWithIngredientes()
       .subscribe(
       result => {
@@ -147,7 +147,7 @@ export class SucursalComponent implements OnInit {
       });
   }
 
-  private getSucursal(nombreSucursal: string) {
+  public getSucursal(nombreSucursal: string) {
     this._sucursalService.GetSucursalByName(nombreSucursal).subscribe(
       result => {
         if (result) {

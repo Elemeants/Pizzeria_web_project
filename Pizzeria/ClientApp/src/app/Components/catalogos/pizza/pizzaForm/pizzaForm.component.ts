@@ -18,14 +18,14 @@ export class PizzaFormComponent implements OnInit {
   @Input() isNew: boolean;
   @Output() update = new EventEmitter<void>();
   @Output() close = new EventEmitter<void>();
-  private newPizza: Pizza;
-  private newPizzaForm: FormGroup;
+  public newPizza: Pizza;
+  public newPizzaForm: FormGroup;
   public selectedFile: File;
   public formWait: boolean;
-  constructor(private _pizzaService: PizzaService,
-    private _imageService: ImageService,
+  constructor(public _pizzaService: PizzaService,
+    public _imageService: ImageService,
     public dialog: MatDialog,
-    private formBuilder: FormBuilder) {
+    public formBuilder: FormBuilder) {
     this.newPizzaForm = this.formBuilder.group({
       nombre: ['', Validators.required],
       costo: ['',  Validators.required],
@@ -77,7 +77,7 @@ export class PizzaFormComponent implements OnInit {
     this.close.next();
   }
 
-  private openDialog(): void {
+  public openDialog(): void {
     const dialogRef = this.dialog.open(DialogPizzaComponent, {
       width: '250px',
       minHeight: '200px',
@@ -89,7 +89,7 @@ export class PizzaFormComponent implements OnInit {
     });
   }
 
-  private UpdatePizza() {
+  public UpdatePizza() {
     // Log's the object pizza
     // console.log(this.newPizza);
     // Process to add a pizza && upload the file
@@ -134,7 +134,7 @@ export class PizzaFormComponent implements OnInit {
     );
   }
 
-  private AddPizza() {
+  public AddPizza() {
     // Log's the object pizza
     // console.log(this.newPizza);
     // Process to add a pizza && upload the file

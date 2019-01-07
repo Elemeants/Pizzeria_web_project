@@ -13,12 +13,12 @@ import { DialogIngredienteComponent } from './dialogIngrediente/dialogIngredient
 export class DialogPizzaComponent {
   public dialogSelection: Ingrediente[];
   public status: boolean[];
-  private originalSelection: [];
+  public originalSelection: [];
   constructor(
     public dialogRef: MatDialogRef<DialogPizzaComponent>,
     @Inject(MAT_DIALOG_DATA) public inputData: any,
     public dialog: MatDialog,
-    private _ingredienteService: IngredienteService) {
+    public _ingredienteService: IngredienteService) {
       this.status = new Array<boolean>();
       this.dialogSelection = new Array<Ingrediente>();
       this._ingredienteService.GetIngredientes().subscribe(
@@ -33,7 +33,7 @@ export class DialogPizzaComponent {
       );
     }
 
-  private buildCheckPoints(inputIngredientes: Array<Ingrediente>) {
+  public buildCheckPoints(inputIngredientes: Array<Ingrediente>) {
     this.dialogSelection.forEach((item, index) => {
       this.status[index] = (!!inputIngredientes.find(x => x.id === item.id));
     });
@@ -43,16 +43,20 @@ export class DialogPizzaComponent {
     this.dialogRef.close(this.originalSelection);
   }
 
-  private openNewIngrediente(): void {
+  public openNewIngrediente(): void {
     const dialogRef = this.dialog.open(DialogIngredienteComponent, {
       width: '250px',
       height: '200px'
     });
     dialogRef.afterClosed().subscribe(result => {
+      this._ingredienteService.GetIngredientes().subscribe(
+        items => this.dialogSelection = items,
+        error => console.error(error)
+      );
     });
   }
 
-  private getData(): Array<Ingrediente> {
+  public getData(): Array<Ingrediente> {
     const dataArray: Array<Ingrediente> = new Array<Ingrediente>();
     this.dialogSelection.forEach((item, index) => {
       dataArray.push(this.status[index] ? item : null);
